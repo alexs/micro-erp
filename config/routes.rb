@@ -1,4 +1,22 @@
 Erp::Application.routes.draw do
+  devise_for :users do 
+    authenticated :user do
+      root :to => 'dashboards#index'
+    end
+
+    unauthenticated :user do
+      root :to => 'devise/sessions#new'
+    end
+  end
+  scope "/admin" do
+    resources :users
+  end
+
+  resources :expenses
+  resources :expense_types
+  resources :dashboards, :path => "dashboard", :only => [:index]
+  root :to => 'dashboards#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

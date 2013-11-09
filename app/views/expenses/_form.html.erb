@@ -1,0 +1,92 @@
+<%= form_for @expense, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :job_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :job_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :expense_category_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :expense_category_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :expense_type_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :expense_type_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :expense_code, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :expense_code, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :date, :class => 'date_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :invoice, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :invoice, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :subtotal, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :subtotal, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :iva, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :iva, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :total, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :total, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :usd_aop, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :usd_aop, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :file1, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :file1, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :file2, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :file2, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :file3, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :file3, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :user_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :user_id, :class => 'number_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                expenses_path, :class => 'btn' %>
+  </div>
+<% end %>

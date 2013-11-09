@@ -1,14 +1,129 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Erp</title>
+  <%= favicon_link_tag "/favicon.ico" %>
+  <title>M.I.C.G. Soluciones - 1.0</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <% if user_signed_in? %>
+  <div class="navbar navbar-static-top" style="margin-bottom: 20px;">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
 
-<%= yield %>
+        <%= link_to (image_tag "header.png") + " M.I.C.G.", dashboards_path, :class => "brand" %>
 
-</body>
-</html>
+        <div style="height: 0px;" class="nav-collapse collapse">
+          <ul class="nav">
+            <li>
+              <%= link_to "Inicio", dashboards_path %>
+            </li>
+            <% if can? :index, Expense %>
+              <li>
+                  <%= link_to "Gastos", expenses_path %>
+              </li>
+            <% end %>
+
+              <li>
+               
+              </li>
+
+          </ul>
+          <ul class="nav pull-right">
+            <li id="preview-menu" class="dropdown">
+              <%= link_to(raw("<i class='icon-user'></i> Mi cuenta<b class='caret'></b>"),"#",{:class => 'dropdown-toggle', :data => {:toggle => "dropdown"}})  %>
+              <ul class="dropdown-menu">
+                <li>
+                  <li> 
+                    <%= link_to 'Cambiar contraseña', edit_user_registration_path,{:class => 'dropdown-toggle'}  %> 
+                  </li>
+
+                  <li class="divider"></li>
+                  <li><%= link_to "Cerrar sesión", destroy_user_session_path, :method => :delete %></li>
+                </ul>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <% if user_signed_in? %>
+        <div class="container-fluid">
+         <% if flash[:alert] %>
+         <p class="alert alert-error"><%= flash[:alert] %></p>
+         <% end %>
+         <% if flash[:notice] %>
+         <p class="alert alert-success"><%= flash[:notice] %><a class="close" data-dismiss="alert" href="#">&times;</a></p>
+         <% end %>
+         <% if flash[:success] %>
+         <p class="alert alert-success"><%= flash[:notice] %></p>
+         <% end %>
+         <% end %>
+
+          <div class="row-fluid">
+            <div class="span3 sidebar-width">
+              <div class="well sidebar-nav-fixed">
+                <ul class="nav nav-tabs nav-stacked main-menu">
+                  <li class="nav-header hidden-tablet">Menú</li>
+                  <% if controller_name == "tickets" %>
+                    <% if can? :index, Expense %>
+                      <li class = "<%= action_name == 'index' ? 'active':'' %>">
+                        <%= link_to(raw("<i class='icon-list-alt'></i><span class='hidden-tablet'> Solicitudes de servicio</span>"),expenses_path) %>
+                      </li>
+                    <% end %>
+                    <% if can? :create, Expense %>
+                      <li class = "<%=  action_name == 'new' ? 'active':'' %>">
+                        <%= link_to(raw("<i class='icon-pencil'></i><span class='hidden-tablet'> Nueva solicitud </span>"),new_expense_path) %>
+                      </li>
+                    <% end %>
+                    <% if can? :index, Expense %>
+                      <li>
+                        <%= link_to(raw("<i class='icon-search'></i><span class='hidden-tablet'> Búscar </span>"),expenses_path(:search=> "")) %>
+                      </li>
+                    <% end %>
+                  <% end %>
+                  
+                    
+                    
+
+                  <% if controller_name == "dashboards" %>
+                    <li class = "<%= controller_name == 'dashboards' ? 'active':'' %>">
+                      <%= link_to(raw("<i class='icon-th-large'></i><span class='hidden-tablet'> Tablero principal</span>"),dashboards_path) %>
+                    </li>
+                    
+                    <li class = "<%= controller_name == 'reports' ? 'active':'' %>">
+                      <%= link_to(raw("<i class='icon-list-alt'></i><span class='hidden-tablet'> Informes</span>"),dashboards_path) %>
+                    </li>
+                      <li class = "<%= controller_name == 'users' ? 'active':'' %>">
+                        <%= link_to(raw("<i class='icon-user'></i><span class='hidden-tablet'> Usuarios</span>"),users_path) %>
+                      </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div> <!-- /span -->
+            <div class="span9">
+              <%= yield %>
+            </div>
+        </div> <!-- /row -->
+
+
+    </div>
+    <hr />
+    <footer>
+      <p align="center">Servicios de Salud Pública DF - Subdirección de infraestructura <br /> Área de Sistemas de los Servicios de Salud Pública DF - <%= Date.today.year %> - <u>sistemas@sersalud.df.gob.mx</u></p>
+
+    </footer>
+
+
+
+  </body>
+  </html>
+
+

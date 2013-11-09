@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  job: 
+  expense_category: 
+  expense_type: 
+  expense_code: MyString
+  date: 2013-11-08
+  invoice: MyString
+  subtotal: 9.99
+  iva: 9.99
+  total: 9.99
+  usd_aop: 9.99
+  file1: MyString
+  file2: MyString
+  file3: MyString
+  user: 
+
+two:
+  job: 
+  expense_category: 
+  expense_type: 
+  expense_code: MyString
+  date: 2013-11-08
+  invoice: MyString
+  subtotal: 9.99
+  iva: 9.99
+  total: 9.99
+  usd_aop: 9.99
+  file1: MyString
+  file2: MyString
+  file3: MyString
+  user: 

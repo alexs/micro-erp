@@ -1,0 +1,47 @@
+<%- model_class = Expense -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:job_id) %>:</strong></dt>
+  <dd><%= @expense.job_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:expense_category_id) %>:</strong></dt>
+  <dd><%= @expense.expense_category_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:expense_type_id) %>:</strong></dt>
+  <dd><%= @expense.expense_type_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:expense_code) %>:</strong></dt>
+  <dd><%= @expense.expense_code %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:date) %>:</strong></dt>
+  <dd><%= @expense.date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:invoice) %>:</strong></dt>
+  <dd><%= @expense.invoice %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:subtotal) %>:</strong></dt>
+  <dd><%= @expense.subtotal %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:iva) %>:</strong></dt>
+  <dd><%= @expense.iva %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:total) %>:</strong></dt>
+  <dd><%= @expense.total %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:usd_aop) %>:</strong></dt>
+  <dd><%= @expense.usd_aop %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:file1) %>:</strong></dt>
+  <dd><%= @expense.file1 %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:file2) %>:</strong></dt>
+  <dd><%= @expense.file2 %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:file3) %>:</strong></dt>
+  <dd><%= @expense.file3 %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
+  <dd><%= @expense.user_id %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              expenses_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_expense_path(@expense), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              expense_path(@expense),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
