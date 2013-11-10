@@ -18,23 +18,36 @@
           <span class="icon-bar"></span>
         </a>
 
-        <%= link_to (image_tag "header.png") + " M.I.C.G.", dashboards_path, :class => "brand" %>
+        <%= link_to (image_tag "header.png"), dashboards_path, :class => "brand" %>
 
         <div style="height: 0px;" class="nav-collapse collapse">
           <ul class="nav">
             <li>
               <%= link_to "Inicio", dashboards_path %>
             </li>
+            <li>
+              <%= link_to "Clientes", "#" %>
+            </li>
+            <li>
+              <%= link_to "Ventas", "#" %>
+            </li>
+            <li>
+              <%= link_to "Facturas", "#" %> 
+            </li>
+            <li>
+              <%= link_to "Proveedores", "#" %> 
+            </li>
+            <li>
+              <%= link_to "Compras", "#" %> 
+            </li>
             <% if can? :index, Expense %>
               <li>
-                  <%= link_to "Gastos", expenses_path %>
+                <%= link_to "Gastos", expenses_path %>
               </li>
             <% end %>
-
-              <li>
-               
-              </li>
-
+            <li>
+              <%= link_to "Configuración", "#" %> 
+            </li>
           </ul>
           <ul class="nav pull-right">
             <li id="preview-menu" class="dropdown">
@@ -54,70 +67,72 @@
           </div>
         </div>
         <% end %>
+
         <% if user_signed_in? %>
-        <div class="container-fluid">
-         <% if flash[:alert] %>
-         <p class="alert alert-error"><%= flash[:alert] %></p>
-         <% end %>
-         <% if flash[:notice] %>
-         <p class="alert alert-success"><%= flash[:notice] %><a class="close" data-dismiss="alert" href="#">&times;</a></p>
-         <% end %>
-         <% if flash[:success] %>
-         <p class="alert alert-success"><%= flash[:notice] %></p>
-         <% end %>
-         <% end %>
+          <div class="container-fluid">
+            <div class="row-fluid">
+              <% if flash[:alert] %>
+                <p class="alert alert-error"><%= flash[:alert] %></p>
+              <% end %>
 
-          <div class="row-fluid">
-            <div class="span3 sidebar-width">
-              <div class="well sidebar-nav-fixed">
-                <ul class="nav nav-tabs nav-stacked main-menu">
-                  <li class="nav-header hidden-tablet">Menú</li>
-                  <% if controller_name == "tickets" %>
-                    <% if can? :index, Expense %>
-                      <li class = "<%= action_name == 'index' ? 'active':'' %>">
-                        <%= link_to(raw("<i class='icon-list-alt'></i><span class='hidden-tablet'> Solicitudes de servicio</span>"),expenses_path) %>
-                      </li>
-                    <% end %>
-                    <% if can? :create, Expense %>
-                      <li class = "<%=  action_name == 'new' ? 'active':'' %>">
-                        <%= link_to(raw("<i class='icon-pencil'></i><span class='hidden-tablet'> Nueva solicitud </span>"),new_expense_path) %>
-                      </li>
-                    <% end %>
-                    <% if can? :index, Expense %>
-                      <li>
-                        <%= link_to(raw("<i class='icon-search'></i><span class='hidden-tablet'> Búscar </span>"),expenses_path(:search=> "")) %>
-                      </li>
-                    <% end %>
-                  <% end %>
-                  
-                    
-                    
+              <% if flash[:notice] %>
+                <p class="alert alert-success"><%= flash[:notice] %><a class="close" data-dismiss="alert" href="#">&times;</a></p>
+              <% end %>
 
-                  <% if controller_name == "dashboards" %>
-                    <li class = "<%= controller_name == 'dashboards' ? 'active':'' %>">
-                      <%= link_to(raw("<i class='icon-th-large'></i><span class='hidden-tablet'> Tablero principal</span>"),dashboards_path) %>
-                    </li>
+              <% if flash[:success] %>
+                <p class="alert alert-success"><%= flash[:notice] %></p>
+              <% end %>
+            </div>
+            <div class="row-fluid">
+              <div class="span3">
+                <div class="well sidebar-nav">
+                  <ul class="nav nav-tabs nav-stacked main-menu">
+                    <li class="nav-header hidden-tablet">Menú</li>
                     
-                    <li class = "<%= controller_name == 'reports' ? 'active':'' %>">
-                      <%= link_to(raw("<i class='icon-list-alt'></i><span class='hidden-tablet'> Informes</span>"),dashboards_path) %>
-                    </li>
+                    <% if controller_name == "expenses" %>
+                      <% if can? :index, Expense %>
+                        <li class = "<%= action_name == 'index' ? 'active':'' %>">
+                          <%= link_to(raw("<i class='icon-list-alt'></i><span class='hidden-tablet'> Solicitudes de servicio</span>"),expenses_path) %>
+                        </li>
+                      <% end %>
+                      <% if can? :create, Expense %>
+                        <li class = "<%=  action_name == 'new' ? 'active':'' %>">
+                          <%= link_to(raw("<i class='icon-pencil'></i><span class='hidden-tablet'> Nueva solicitud </span>"),new_expense_path) %>
+                        </li>
+                      <% end %>
+                      <% if can? :index, Expense %>
+                        <li>
+                          <%= link_to(raw("<i class='icon-search'></i><span class='hidden-tablet'> Búscar </span>"),expenses_path(:search=> "")) %>
+                        </li>
+                      <% end %>
+                    <% end %>
+
+                    <% if controller_name == "dashboards" %>
+                      <li class = "<%= controller_name == 'dashboards' ? 'active':'' %>">
+                        <%= link_to(raw("<i class='icon-th-large'></i><span class='hidden-tablet'> Tablero principal</span>"),dashboards_path) %>
+                      </li>
+                    
+                      <li class = "<%= controller_name == 'reports' ? 'active':'' %>">
+                        <%= link_to(raw("<i class='icon-list-alt'></i><span class='hidden-tablet'> Informes</span>"),dashboards_path) %>
+                      </li>
                       <li class = "<%= controller_name == 'users' ? 'active':'' %>">
                         <%= link_to(raw("<i class='icon-user'></i><span class='hidden-tablet'> Usuarios</span>"),users_path) %>
                       </li>
-                  <% end %>
-                </ul>
+                    <% end %>
+                  </ul>
+                </div><!--/.well -->
+              </div><!--/span-->
+              <div class="span9">
+                <div class="well">
+                  <%= yield %>
+                </div>
               </div>
-            </div> <!-- /span -->
-            <div class="span9">
-              <%= yield %>
-            </div>
-        </div> <!-- /row -->
-
-
-    </div>
+            </div><!--/row-->
+          </div><!--/container-->
+        <% end %>
     <hr />
     <footer>
-      <p align="center">Servicios de Salud Pública DF - Subdirección de infraestructura <br /> Área de Sistemas de los Servicios de Salud Pública DF - <%= Date.today.year %> - <u>sistemas@sersalud.df.gob.mx</u></p>
+      <p align="center">© Manufacturing Information & Control Group - <%= Date.today.year %></p>
 
     </footer>
 

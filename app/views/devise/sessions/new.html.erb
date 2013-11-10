@@ -1,0 +1,90 @@
+<!-- Le styles -->
+    <style type="text/css">
+      /* Override some defaults */
+      html, body {
+        background-color: #eee;
+      }
+      body {
+        padding-top: 40px; 
+      }
+      .container {
+        width: 300px;
+      }
+
+      /* The white background content wrapper */
+      .container > .content {
+        background-color: #fff;
+        padding: 20px;
+        margin: 0 -20px; 
+        -webkit-border-radius: 10px 10px 10px 10px;
+           -moz-border-radius: 10px 10px 10px 10px;
+                border-radius: 10px 10px 10px 10px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+                box-shadow: 0 1px 2px rgba(0,0,0,.15);
+      }
+
+	  .login-form {
+		margin-left: 50px;
+	  }
+	
+	  legend {
+		margin-right: -50px;
+		font-weight: bold;
+	  	color: #404040;
+	  }
+
+	   footer {
+color: #F2FA1B;
+background: #222;
+padding: 17px 0 18px 0;
+border-top: 1px solid #000;
+bottom: 0px;
+
+        left: 0;
+        position: absolute;
+        right: 0;
+}
+
+    </style>
+
+<div class="container">
+    <div class="content">
+      <div class="row">
+        <div class="login-form">
+          <p class="text-center">
+          <legend>Infraestructura</legend>
+          </p>
+          <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+              <% if flash[:alert] %>
+      			<p class="alert alert-error"><%= flash[:alert] %></p>
+    		  <% end %>
+    		  <% if flash[:notice] %>
+                <p class="alert alert-warning"><%= flash[:notice] %></p>
+    		<% end %>
+            <fieldset>
+              <div class="clearfix">
+                <div class="input-prepend">
+                  <span class="add-on">
+                    <i class="icon-user"></i>
+                  </span>
+                  <%= f.text_field :email, :autofocus => true, :class => "input", :placeholder => "Correo electrónico" %>
+                 </div>
+              </div>
+              <div class="clearfix">
+                  <div class="input-prepend" style="text-align: center">
+                    <span class="add-on">
+                      <i class="icon-lock"></i>
+                    </span>
+                  <%= f.password_field :password, :class => "input", :placeholder => "Contraseña" %>
+                  </div>
+              </div>
+                <div class="button_div" style="text-align: center">
+				 	<%= f.submit "Entrar", :class => "btn btn-large btn-primary" %>
+				 </div>
+            </fieldset>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div> 
