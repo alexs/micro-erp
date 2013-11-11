@@ -13,4 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require highcharts
+//= require highcharts/highcharts-more
+//= require highcharts/modules/data
+//= require highcharts/modules/exporting
+//= require highcharts/themes/grid
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.es
 //= require_tree .

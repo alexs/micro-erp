@@ -26,7 +26,10 @@
   <div class="control-group">
     <%= f.label :date, :class => 'control-label' %>
     <div class="controls">
-      <%= f.date_select :date, :class => 'date_select' %>
+        <div class="input-append date" data-date="<%= l Date.today %>" data-date-format="dd/mm/yyyy" data-date-language = "es">
+          <%= f.text_field :date, :class => "input-small", :size => "9" %>
+          <span class="add-on"><i class="icon-calendar"></i></span>
+        </div>
     </div>
   </div>
   <div class="control-group">
@@ -90,3 +93,13 @@
                 expenses_path, :class => 'btn' %>
   </div>
 <% end %>
+
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('.date').datepicker({
+         "autoclose": true
+      });
+  })
+</script>

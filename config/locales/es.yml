@@ -212,9 +212,7 @@ es:
       <<: *errors
     models:
         user: Usuario
-        ticket: Solicitud de servicio
-        patient: Datos generales
-        inventory: inventario
+        expense: Gasto
     attributes:
         user:
           name: "Nombre"
