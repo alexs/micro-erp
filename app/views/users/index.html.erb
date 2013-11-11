@@ -1,0 +1,42 @@
+		<p><%= link_to "Alta de nuevo usuario", new_user_path, :class => "btn btn-primary" %> </p>
+		<legend>Lista de usuarios del sistema</legend>
+
+		<table class="table table-condensed table-hover table-bordered">
+				<thead>
+					<tr>
+						<th>
+							Usuario
+						</th>
+						<th>
+							Nombre
+						</th>
+						<th>
+							Rol
+						</th>
+						<th colspan="3">
+							Acciones
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @users.each do |user| %>
+					<tr>
+						<td>
+							<%= user.email %>
+						</td>
+						<td>
+							<%= user.fullname %>
+						</td>
+						<td>
+							<%= user.role %>
+						</td>
+						<td>
+							<%= link_to "Detalles", user_path(user) %>
+						</td>
+						<td>
+							<%= link_to "Cambiar password", edit_user_path(user) %>
+						</td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>

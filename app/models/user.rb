@@ -24,4 +24,8 @@ class User < ActiveRecord::Base
         "Supervisor"
     end
   end
+
+  def fullname
+    "#{name} #{surname}"
+  end
 end

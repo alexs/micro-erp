@@ -15,6 +15,7 @@ Erp::Application.routes.draw do
   resources :expenses
   resources :expense_types
   resources :dashboards, :path => "dashboard", :only => [:index]
+  resources :settings, :only => [:index]
   root :to => 'dashboards#index'
 
   # The priority is based upon order of creation:

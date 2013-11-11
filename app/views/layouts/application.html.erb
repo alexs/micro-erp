@@ -46,7 +46,7 @@
               </li>
             <% end %>
             <li>
-              <%= link_to "Configuración", "#" %> 
+              <%= link_to "Configuración", settings_path %> 
             </li>
           </ul>
           <ul class="nav pull-right">
@@ -111,10 +111,11 @@
                       <li class = "<%= controller_name == 'dashboards' ? 'active':'' %>">
                         <%= link_to(raw("<i class='icon-th-large'></i><span class='hidden-tablet'> Tablero principal</span>"),dashboards_path) %>
                       </li>
-                    
                       <li class = "<%= controller_name == 'reports' ? 'active':'' %>">
                         <%= link_to(raw("<i class='icon-list-alt'></i><span class='hidden-tablet'> Informes</span>"),dashboards_path) %>
                       </li>
+                    <% end %>
+                    <% if controller_name == "settings" || controller_name == "users" %>
                       <li class = "<%= controller_name == 'users' ? 'active':'' %>">
                         <%= link_to(raw("<i class='icon-user'></i><span class='hidden-tablet'> Usuarios</span>"),users_path) %>
                       </li>

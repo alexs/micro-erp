@@ -1,0 +1,11 @@
+<legend>Información del usuario:  <i><%= @user.fullname %></i></legend>
+<fieldset>
+<p><strong>Usuario:</strong> <%= @user.email %></p>
+<p><strong>Nombre:</strong> <%= @user.fullname %></p>
+<p><strong>Tipo de usuario:</strong> <%= @user.role %></p>
+
+</fieldset>
+<p></p>
+<%= link_to 'Lista de usuarios', users_path, :class => "btn btn-info" %> |
+<%= link_to 'Modificar usuario', edit_user_path(@user), :class => "btn btn-primary" %> |
+<%= link_to 'Eliminar usuario', user_path(@user), :method => 'delete', :confirm => '¿Estas seguro de eliminar este usuario? una vez ralizada la acción no se podra deshacer.', :class => "btn btn-danger" %>

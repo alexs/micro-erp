@@ -1,0 +1,70 @@
+
+
+<%= form_for @user, :html => {:class => 'form-horizontal'} do |f| %>
+  <% if @user.errors.any? %>
+    <div class="alert alert-error">
+      <h5>Ocurrieron <%= @user.errors.count %> errores, porfavor verifique que los siguientes datos sean correctos:</h5>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+   <%= f.label :role_id, :class => "control-label" %>
+    <div class="controls">
+      <%= f.select :role_id, { "Capturista" => "2", "Administrador" => "1"} %>
+    </div>
+  </div>
+
+
+
+  <div class="control-group">
+   <%= f.label :email, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :email %>
+    </div>
+  </div>
+
+  <div class="control-group">
+   <%= f.label :password, :class => "control-label" %>
+    <div class="controls">
+      <%= f.password_field :password %>
+    </div>
+  </div>
+
+  <div class="control-group">
+   <%= f.label :password_confirmation, :class => "control-label" %>
+    <div class="controls">
+      <%= f.password_field :password_confirmation %>
+    </div>
+  </div>
+
+  <div class="control-group">
+   <%= f.label :name, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :name %>
+    </div>
+  </div>
+
+  <div class="control-group">
+   <%= f.label :surname, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :surname %>
+    </div>
+  </div>
+
+  <div class="control-group">
+   <%= f.label :email, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :email %>
+    </div>
+  </div>
+
+  <div class="actions text-center">
+    <%= f.submit nil, :class => "btn btn-success btn-medium" %>
+  </div>
+<% end %>
