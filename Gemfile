@@ -9,6 +9,7 @@ gem "cancan", "~> 1.6.8"
 gem 'will_paginate-bootstrap', '0.2.5'
 gem 'bootstrap-datepicker-rails'
 gem 'carrierwave'
+gem 'carrierwave-google_drive'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
