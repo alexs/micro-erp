@@ -226,7 +226,12 @@ es:
           job_id: Proyecto/servicio
           expense_category_id: "Tipo"
           expense_type_id: "Concepto"
-
+          date: "Fecha"
+          invoice: "Factura"
+          usd_aop: "USD AOP"
+          file1: "Archivo 1"
+          file2: "Archivo 2"
+          file3: "Archivo 3"
            
           
             
