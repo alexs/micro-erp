@@ -1,11 +1,12 @@
 <%= form_for @expense, :html => {:multipart => true, :class => 'form-horizontal' } do |f| %>
+<div class="well"> 
   <div class="control-group">
     <%= f.label :date, :class => 'control-label' %>
     <div class="controls">
-        <div class="input-append date" data-date="<%= l Date.today %>" data-date-format="dd/mm/yyyy" data-date-language = "es">
-          <%= f.text_field :date, :class => "input-small", :size => "9", :value => "#{l Date.today}" %>
-          <span class="add-on"><i class="icon-calendar"></i></span>
-        </div>
+      <div class="input-append date" data-date="<%= l Date.today %>" data-date-format="dd/mm/yyyy" data-date-language = "es">
+        <%= f.text_field :date, :class => "input-small", :size => "9", :value => "#{l Date.today}" %>
+        <span class="add-on"><i class="icon-calendar"></i></span>
+      </div>
     </div>
   </div>  
   <div class="control-group">
@@ -14,7 +15,7 @@
       <%= f.select( :job_id, Job.all.collect {|p| [ p.name , p.id ] }, { :include_blank => 'Selecciona un proyecto' } )%>
     </div>
   </div>
-   <div class="control-group">
+  <div class="control-group">
     <%= f.label :expense_category_id, :class => 'control-label' %>
     <div class="controls">
       <%= f.select( :expense_category_id, ExpenseCategory .all.collect {|p| [ p.name , p.id ] }, { :include_blank => 'Selecciona un tipo de gasto' } )%>
@@ -65,41 +66,32 @@
   <div class="control-group">
     <%= f.label :file1, :class => 'control-label' %>
     <div class="controls">
-    <%= f.file_field :file1, :class => 'file_field'%>
+      <%= f.file_field :file1, :class => 'file_field'%>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :file2, :class => 'control-label' %>
     <div class="controls">
-       <%= f.file_field :file2, :class => 'file_field'%>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :file3, :class => 'control-label' %>
-    <div class="controls">
-       <%= f.file_field :file3, :class => 'file_field'%>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :user_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :user_id, :class => 'number_field' %>
-    </div>
-  </div>
+     <%= f.file_field :file2, :class => 'file_field'%>
+   </div>
+ </div>
+ <div class="control-group">
+  <%= f.label :file3, :class => 'control-label' %>
+  <div class="controls">
+   <%= f.file_field :file3, :class => 'file_field'%>
+ </div>
+</div>
 
   <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                expenses_path, :class => 'btn' %>
+  <%= f.submit nil, :class => "btn btn-success btn-medium" %>
   </div>
+</div>
 <% end %>
-
-
 
 <script type="text/javascript">
   $(document).ready(function(){
-      $('.date').datepicker({
-         "autoclose": true
-      });
+    $('.date').datepicker({
+     "autoclose": true
+   });
   })
 </script>

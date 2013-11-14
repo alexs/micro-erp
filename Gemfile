@@ -6,7 +6,7 @@ gem 'devise', "3.0"
 gem 'haml', "~> 3.1.7"
 gem "devise-i18n", "~> 0.5.7"
 gem "cancan", "~> 1.6.8"
-gem 'will_paginate-bootstrap', '0.2.5'
+gem 'will_paginate-bootstrap'
 gem 'bootstrap-datepicker-rails'
 gem 'carrierwave'
 gem 'carrierwave-google_drive'
