@@ -1,4 +1,7 @@
 Erp::Application.routes.draw do
+  resources :expense_types
+
+
   devise_for :users do 
     authenticated :user do
       root :to => 'dashboards#index'

@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def admin?
+    self.role_id == 1 ? true : false
+  end
+
   def fullname
     "#{name} #{surname}"
   end

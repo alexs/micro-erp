@@ -14,6 +14,7 @@ class CreateExpenses < ActiveRecord::Migration
       t.string :file1
       t.string :file2
       t.string :file3
+      t.text :desc
       t.references :user
 
       t.timestamps

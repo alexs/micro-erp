@@ -1,26 +1,27 @@
+  <div >
+    <legend>Gasto</legend>
+  </div>
 
-<div >
-  <legend>Gasto</legend>
-</div>
-
-<div class="dl-horizontal">
-  <td><p><b>Fecha:  </b><%= @expense.date %></p></td>
-  <p><b>Proyecto/servicio:  </b><%= @expense.job.name if !@expense.job.nil? %></dt>
-  <p><b>Tipo:  </b><%= @expense.expense_category_id if !@expense.expense_category.nil?  %></p>
-  <p><b>Concepto:  </b><%= @expense.expense_type_id if !@expense.expense_type.nil?  %> </p>
-  <p><b>Expense code:  </b><%= @expense.expense_code %></p>
-  <p><b>Factura:</b><%= @expense.invoice %></p>
-  <p><b>Subtotal:</b><%= @expense.subtotal %></p>
-  <p><b>Iva</b><%= @expense.iva %></p>
-  <p><b>Total</b><%= @expense.total %></p>
-  <p><b>USD AOP</b><%= @expense.usd_aop %></p>
-  <p><b>Archivo 1:</b><%= @expense.file1 %></p>
-  <p><b>Archivo 2:</b><%= @expense.file2 %></p>
-  <p><b>Archivo 3:</b><%= @expense.file3 %></p>
-  
- </div>
-
-<div>
-<%= link_to 'Editar', edit_expense_path(@expense), :class => "btn btn-success btn-small" %>
-  
-</div>
+  <div class="well"> 
+    <div class="dl-horizontal">
+      <p><b>Fecha:  </b><%= l @expense.date, :format => :long %></p>
+      <p><b>Proyecto/servicio:  </b><%= @expense.job.name if !@expense.job.nil? %></p>
+      <p><b>Tipo:  </b><%= @expense.expense_category.name if !@expense.expense_category.nil?  %></p>
+      <p><b>Concepto:  </b><%= @expense.expense_type.name if !@expense.expense_type.nil?  %> </p>
+      <p><b>Código:  </b><%= @expense.expense_code %></p>
+      <p><b>Factura:</b><%= @expense.invoice %></p>
+      <p><b>Subtotal:</b><%= @expense.subtotal %></p>
+      <p><b>Iva:</b> <%= @expense.iva %></p>
+      <p><b>Total:</b> <%= @expense.total %></p>
+      <p><b>USD AOP:</b> <%= @expense.usd_aop %></p>
+      <p><b>Comprobante:</b><%= @expense.file1 %></p
+      <% if @expense.file2.size > 0 %>
+        <p><b>Comprobante(archivo 2):</b> <%= @expense.file2 %></p>
+      <% end %>
+      <% if @expense.file3.size > 0 %>
+        <p><b>Comprobante(archivo 3):</b> <%= @expense.file3 %></p>
+      <% end %>
+      <p><b>Notas: </b><%= @expense.desc %></p>   
+    </div>
+  </div>
+<%= link_to 'Modificar', edit_expense_path(@expense), :class => "btn btn-success" %>

@@ -5,6 +5,16 @@
   <%= @expense_type.name %>
 </p>
 
+<p>
+  <b>User:</b>
+  <%= @expense_type.user %>
+</p>
+
+<p>
+  <b>Expense category:</b>
+  <%= @expense_type.expense_category %>
+</p>
+
 
 <%= link_to 'Edit', edit_expense_type_path(@expense_type) %> |
 <%= link_to 'Back', expense_types_path %>

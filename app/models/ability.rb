@@ -7,7 +7,8 @@ class Ability
         when 1
           can :manage, :all
         when 2
-          can :manage, :all
+          #can :manage, :all
+          can :manage, Expense, :user_id => user.id
         when 3
           can :manage, :all
         when 4

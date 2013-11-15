@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
    def determine_layout
     if !current_user.nil?
-      	"application"
+      "application"
     else
     	"session"
     end

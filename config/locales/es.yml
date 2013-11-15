@@ -134,7 +134,7 @@ es:
     select:
       prompt: Por favor selecciona
     submit:
-      create: Crear %{model}
+      create: Guardar %{model}
       submit: Guardar %{model}
       update: Actualizar %{model}
   will_paginate:
@@ -143,7 +143,7 @@ es:
     page_gap: "&hellip;"
   unauthorized:
     manage:
-      all: "Lo sentimos. No estas autorizado para realizar esta acción."
+      all: "No estas autorizado para realizar esta acción."
   number:
     currency:
       format:
@@ -224,14 +224,18 @@ es:
           role_id: "Tipo de usuario"
         expense:
           job_id: Proyecto/servicio
-          expense_category_id: "Tipo"
+          expense_category_id: "Tipo de gasto"
+          expense_code: Código
           expense_type_id: "Concepto"
           date: "Fecha"
           invoice: "Factura"
           usd_aop: "USD AOP"
-          file1: "Archivo 1"
-          file2: "Archivo 2"
-          file3: "Archivo 3"
+          file1: "Comprobante"
+          file2: "Comprobante (opción2)"
+          file3: "Comprobante (opción3)"
+          desc: Notas
+        expense_type:
+          name: Nombre del concepto
            
           
             

@@ -2,6 +2,10 @@
 
 one:
   name: MyString
+  user: 
+  expense_category: 
 
 two:
   name: MyString
+  user: 
+  expense_category: 

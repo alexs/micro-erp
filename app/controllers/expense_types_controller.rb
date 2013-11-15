@@ -41,14 +41,17 @@ class ExpenseTypesController < ApplicationController
   # POST /expense_types.json
   def create
     @expense_type = ExpenseType.new(params[:expense_type])
+    @expense_type.user_id = current_user.id
 
     respond_to do |format|
       if @expense_type.save
         format.html { redirect_to @expense_type, notice: 'Expense type was successfully created.' }
         format.json { render json: @expense_type, status: :created, location: @expense_type }
+        format.js
       else
         format.html { render action: "new" }
         format.json { render json: @expense_type.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
