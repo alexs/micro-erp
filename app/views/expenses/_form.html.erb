@@ -65,38 +65,54 @@
       <%= f.number_field :usd_aop, :class => 'input-small' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :file1, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.file_field :file1, :class => 'file_field'%>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :file2, :class => 'control-label' %>
-    <div class="controls">
-     <%= f.file_field :file2, :class => 'file_field'%>
-   </div>
- </div>
- <div class="control-group">
-  <%= f.label :file3, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.file_field :file3, :class => 'file_field'%>
-    </div>
- </div>
 
- <div class="control-group">
+   <div class="control-group" id:="photo3">
   <%= f.label :desc, :class => 'control-label' %>
   <div class="controls">
    <%= f.text_area :desc, :rows => "3" %>
   </div>
 </div>
 
+  <div class="control-group">
+    <%= f.label :file1, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.file_field :file1, :class => 'file_field'%>
+    </div>
+  </div>
+
+
+            <div class="accordion" id="accordion2">
+                <div class="accordion-group">
+                  <div class="accordion-heading">
+                    <a class="accordion-toggle collapsed btn btn-info" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                      <i class='icon-chevron-down'></i> Más fotos
+                    </a>
+                  </div>
+                  <div id="collapseOne" class="accordion-body collapse" style="height: 0px;">
+                    <div class="accordion-inner">
+                      <div class="control-group">
+                        <%= f.label :file2, :class => 'control-label' %>
+                        <div class="controls">
+                         <%= f.file_field :file2, :class => 'file_field'%>
+                       </div>
+                     </div>
+
+                     <div class="control-group" id:="photo2">
+                      <%= f.label :file3, :class => 'control-label' %>
+                        <div class="controls">
+                          <%= f.file_field :file3, :class => 'file_field'%>
+                        </div>
+                     </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
   <div class="form-actions">
   <%= f.submit nil, :class => "btn btn-success btn-large" %>
   </div>
 <% end %>
 </div>
-
 
 
 <div id="addExpenseType" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -137,5 +153,10 @@
     else
       $( "#job_control_group" ).show();
   })
+
+    $("#more_photos").click(function(){
+      $(this).closest("div").next(".class2").toggle();
+    });
+
   })
 </script>
