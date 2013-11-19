@@ -1,0 +1,19 @@
+<% content_for :sidebar do %>
+  <% if can? :index, Expense %>
+    <li class = "<%= action_name == 'index' ? 'active':'' %>">
+      <%= link_to(raw("<i class='icon-list-alt'></i><span class='hidden-tablet'> Gastos</span>"),expenses_path) %>
+    </li>
+  <% end %>
+
+  <% if can? :create, Expense %>
+    <li class = "<%=  action_name == 'new' ? 'active':'' %>">
+      <%= link_to(raw("<i class='icon-pencil'></i><span class='hidden-tablet'> Registrar gasto </span>"),new_expense_path) %>
+    </li>
+  <% end %>
+
+  <% if can? :index, Expense %>
+    <li>
+      <%= link_to(raw("<i class='icon-search'></i><span class='hidden-tablet'> Búscar </span>"),expenses_path(:search=> "")) %>
+    </li>
+  <% end %>
+<% end %>

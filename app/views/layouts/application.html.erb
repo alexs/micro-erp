@@ -87,39 +87,10 @@
               <div class="span3">
                 <div class="well sidebar-nav">
                   <ul class="nav nav-tabs nav-stacked main-menu">
-                    <li class="nav-header hidden-tablet">Menú</li>
-                    
-                    <% if controller_name == "expenses" %>
-                      <% if can? :index, Expense %>
-                        <li class = "<%= action_name == 'index' ? 'active':'' %>">
-                          <%= link_to(raw("<i class='icon-list-alt'></i><span class='hidden-tablet'> Gastos</span>"),expenses_path) %>
-                        </li>
-                      <% end %>
-                      <% if can? :create, Expense %>
-                        <li class = "<%=  action_name == 'new' ? 'active':'' %>">
-                          <%= link_to(raw("<i class='icon-pencil'></i><span class='hidden-tablet'> Registrar gasto </span>"),new_expense_path) %>
-                        </li>
-                      <% end %>
-                      <% if can? :index, Expense %>
-                        <li>
-                          <%= link_to(raw("<i class='icon-search'></i><span class='hidden-tablet'> Búscar </span>"),expenses_path(:search=> "")) %>
-                        </li>
-                      <% end %>
-                    <% end %>
-
-                    <% if controller_name == "dashboards" %>
-                      <li class = "<%= controller_name == 'dashboards' ? 'active':'' %>">
-                        <%= link_to(raw("<i class='icon-th-large'></i><span class='hidden-tablet'> Tablero principal</span>"),dashboards_path) %>
-                      </li>
-                      <li class = "<%= controller_name == 'reports' ? 'active':'' %>">
-                        <%= link_to(raw("<i class='icon-list-alt'></i><span class='hidden-tablet'> Informes</span>"),dashboards_path) %>
-                      </li>
-                    <% end %>
-                    <% if controller_name == "settings" || controller_name == "users" %>
-                      <li class = "<%= controller_name == 'users' ? 'active':'' %>">
-                        <%= link_to(raw("<i class='icon-user'></i><span class='hidden-tablet'> Usuarios</span>"),users_path) %>
-                      </li>
-                    <% end %>
+                    <li class="nav-header hidden-tablet">
+                      Menú
+                    </li>
+                    <%= yield :sidebar %>
                   </ul>
                 </div><!--/.well -->
               </div><!--/span-->
