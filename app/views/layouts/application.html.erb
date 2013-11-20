@@ -26,7 +26,7 @@
               <%= link_to "Clientes", "#" %>
             </li>
               <li>
-              <%= link_to "Proyectos/servicios", "#" %>
+              <%= link_to "Proyectos/servicios", jobs_path %>
             </li>
             <li>
               <%= link_to "Ventas", "#" %>
@@ -90,7 +90,7 @@
                     <li class="nav-header hidden-tablet">
                       Menú
                     </li>
-                    <%= yield :sidebar %>
+                    <%= render :partial => "#{controller_name.to_s}/sidebar" %>
                   </ul>
                 </div><!--/.well -->
               </div><!--/span-->

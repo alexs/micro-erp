@@ -16,6 +16,7 @@ Erp::Application.routes.draw do
   end
 
   resources :expenses
+  resources :jobs
   resources :expense_types
   resources :dashboards, :path => "dashboard", :only => [:index]
   resources :settings, :only => [:index]

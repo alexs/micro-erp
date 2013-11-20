@@ -213,6 +213,7 @@ es:
     models:
         user: Usuario
         expense: Gasto
+        job: Proyecto/Servicio
     attributes:
         user:
           name: "Nombre"
@@ -236,6 +237,12 @@ es:
           desc: Notas
         expense_type:
           name: Nombre del concepto
+        job:
+          name: Nombre del proyecto o servicio
+          status_id: Estado
+          sold: Vendido
+          job_type_id: Tipo de trabajo
+          user_id: Usuario
            
           
             

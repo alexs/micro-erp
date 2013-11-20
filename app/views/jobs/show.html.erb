@@ -1,0 +1,10 @@
+    <legend>Proyecto/Servicio</legend>
+
+
+  <div class="well"> 
+      <p><b>Tipo:</b> <%= @job.job_type.name if !@job.job_type.nil?  %></p>
+      <p><b><%= @job.job_type.name if !@job.job_type.nil?  %>:</b> <%= @job.name %></p>
+      <p><b>Estado:</b> <%= job_status(@job.status_id) %></p>
+      <p><b>Vendido:</b> <%= sold(@job.sold) %></p>
+  </div>
+<%= link_to 'Modificar', edit_job_path(@job), :class => "btn btn-success" %>

@@ -1,5 +1,3 @@
-<% content_for :sidebar do %>
-	<li class = "<%= controller_name == 'users' ? 'active':'' %>">
-	<%= link_to(raw("<i class='icon-user'></i><span class='hidden-tablet'> Usuarios</span>"),users_path) %>
-	</li>
-<% end %>
+<li class = "<%= controller_name == 'users' ? 'active':'' %>">
+<%= link_to(raw("<i class='icon-user'></i><span class='hidden-tablet'> Usuarios</span>"),users_path) %>
+</li>

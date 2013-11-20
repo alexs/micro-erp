@@ -1,0 +1,17 @@
+<% if can? :index, Job %>
+  <li class = "<%= action_name == 'index' ? 'active':'' %>">
+    <%= link_to(raw("<i class='icon-list-alt'></i><span class='hidden-tablet'> Proyectos/servicios</span>"),jobs_path) %>
+  </li>
+<% end %>
+
+<% if can? :create, Job %>
+  <li class = "<%=  action_name == 'new' ? 'active':'' %>">
+    <%= link_to(raw("<i class='icon-pencil'></i><span class='hidden-tablet'> Nuevo proyecto/servicio </span>"),new_job_path) %>
+  </li>
+<% end %>
+
+<% if can? :index, Job %>
+  <li>
+    <%= link_to(raw("<i class='icon-search'></i><span class='hidden-tablet'> Búscar </span>"),jobs_path(:search=> "")) %>
+  </li>
+<% end %>
