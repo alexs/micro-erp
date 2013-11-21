@@ -6,6 +6,7 @@ class CreateJobs < ActiveRecord::Migration
       t.boolean :sold
       t.references :user
       t.references :job_type
+      t.text :desc
 
       t.timestamps
     end

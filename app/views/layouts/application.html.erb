@@ -23,30 +23,40 @@
         <div style="height: 0px;" class="nav-collapse collapse">
           <ul class="nav">
             <li>
-              <%= link_to "Clientes", "#" %>
+              <%= link_to(raw("<i class='icon-user'></i> Clientes"),"#")  %>
             </li>
-              <li>
-              <%= link_to "Proyectos/servicios", jobs_path %>
+
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="icon-tag"></i>
+                  Ventas
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <li> 
+                    <%= link_to 'Proyectos/servicios', jobs_path,{:class => 'dropdown-toggle'}  %> 
+                  </li>
+                </li>
+              </ul>
+            </li>
             </li>
             <li>
-              <%= link_to "Ventas", "#" %>
+              <%= link_to(raw("<i class='icon-file'></i> Facturas"),"#")  %>
             </li>
             <li>
-              <%= link_to "Facturas", "#" %> 
+              <%= link_to(raw("<i class='icon-book'></i> Proveedores"),"#")  %> 
             </li>
             <li>
-              <%= link_to "Proveedores", "#" %> 
-            </li>
-            <li>
-              <%= link_to "Compras", "#" %> 
+              <%= link_to(raw("<i class='icon-shopping-cart'></i> Compras"),"#")  %>
             </li>
             <% if can? :index, Expense %>
               <li>
-                <%= link_to "Gastos", expenses_path %>
+                <%= link_to(raw("<i class='icon-briefcase'></i> Gastos"),expenses_path)  %>
               </li>
             <% end %>
             <li>
-              <%= link_to "Configuración", settings_path %> 
+              <%= link_to(raw("<i class='icon-wrench'></i> Configuración"),expenses_path)  %>
             </li>
           </ul>
           <ul class="nav pull-right">
@@ -60,7 +70,10 @@
 
                   <li class="divider"></li>
                   <li><%= link_to "Cerrar sesión", destroy_user_session_path, :method => :delete %></li>
-                </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
 
               </div>
             </div>

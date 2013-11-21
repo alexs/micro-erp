@@ -36,7 +36,7 @@ class JobsController < ApplicationController
 
     respond_to do |format|
       if @job.save
-        format.html { redirect_to @job, notice: 'job was successfully created.' }
+        format.html { redirect_to @job, notice: 'El' + (@job.job_type.name if !@job.job_type.nil?) + ' ha sido registrado.' }
       else
         format.html { render action: "new" }
       end
@@ -49,7 +49,7 @@ class JobsController < ApplicationController
 
     respond_to do |format|
       if @job.update_attributes(params[:job])
-        format.html { redirect_to @job, notice: 'job was successfully updated.' }
+        format.html { redirect_to @job, notice: 'El ' + (@job.job_type.name.to_s if !@job.job_type.nil?) + ' ha sido actualizado.' }
       else
         format.html { render action: "edit" }
       end

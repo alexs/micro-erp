@@ -229,6 +229,10 @@ es:
           expense_code: Código
           expense_type_id: "Concepto"
           date: "Fecha"
+          iva: IVA
+          other_taxes: Otros impuestos
+          tip: Propina
+          refund_voucher: Comprobante rembolso
           invoice: "Factura"
           usd_aop: "USD AOP"
           file1: "Comprobante"

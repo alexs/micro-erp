@@ -9,8 +9,11 @@ class CreateExpenses < ActiveRecord::Migration
       t.string :invoice
       t.decimal :subtotal
       t.decimal :iva
+      t.decimal :other_taxes
+      t.decimal :tip
       t.decimal :total
       t.decimal :usd_aop
+      t.string :refund_voucher
       t.string :file1
       t.string :file2
       t.string :file3

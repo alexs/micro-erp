@@ -15,3 +15,9 @@
     <%= link_to(raw("<i class='icon-search'></i><span class='hidden-tablet'> Búscar </span>"),expenses_path(:search=> "")) %>
   </li>
 <% end %>
+
+<% if can? :create, Expense %>
+  <li class = "<%=  action_name == 'index' ? 'active':'' %>">
+    <%= link_to(raw("<i class='icon-filter'></i><span class='hidden-tablet'> Filtrar gastos </span>"), expenses_path) %>
+  </li>
+<% end %>

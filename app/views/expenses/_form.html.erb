@@ -1,5 +1,14 @@
 <div class="well"> 
 <%= form_for @expense, :html => {:multipart => true, :class => 'form-horizontal' } do |f| %>
+
+  <% if current_user.admin? %>
+    <div class="control-group">
+      <%= f.label :refund_voucher, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :refund_voucher, :class => 'input-small' %>
+      </div>
+    </div>
+  <% end %>
   <div class="control-group">
     <%= f.label :date, :class => 'control-label' %>
     <div class="controls">
@@ -19,7 +28,7 @@
   <div class="control-group" id="job_control_group">
     <%= f.label :job_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select( :job_id, Job.all.collect {|p| [ p.name , p.id ] }, { :include_blank => 'Selecciona un proyecto' } )%>
+      <%= f.select( :job_id, Job.where("status_id != ?",4).collect {|p| [ p.name , p.id ] }, { :include_blank => 'Selecciona un proyecto' } )%>
     </div>
   </div>
   
@@ -54,9 +63,21 @@
     </div>
   </div>
   <div class="control-group">
+    <%= f.label :other_taxes, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :other_taxes, :class => 'input-small' %>
+    </div>
+  </div>
+  <div class="control-group">
     <%= f.label :total, :class => 'control-label' %>
     <div class="controls">
       <%= f.number_field :total, :class => 'input-small' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :tip, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :tip, :class => 'input-small' %>
     </div>
   </div>
   <div class="control-group">
