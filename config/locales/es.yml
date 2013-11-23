@@ -226,14 +226,14 @@ es:
         expense:
           job_id: Proyecto/servicio
           expense_category_id: "Tipo de gasto"
-          expense_code: Código
+          location: Ubicación
           expense_type_id: "Concepto"
           date: "Fecha"
           iva: IVA
           other_taxes: Otros impuestos
           tip: Propina
           refund_voucher: Comprobante rembolso
-          invoice: "Factura"
+          expense_invoice: "Factura"
           usd_aop: "USD AOP"
           file1: "Comprobante"
           file2: "Comprobante (opción2)"

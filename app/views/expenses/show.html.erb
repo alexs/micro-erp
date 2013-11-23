@@ -7,8 +7,8 @@
       <p><b>Proyecto/servicio:  </b><%= @expense.job.name if !@expense.job.nil? %></p>
       <p><b>Tipo:  </b><%= @expense.expense_category.name if !@expense.expense_category.nil?  %></p>
       <p><b>Concepto:  </b><%= @expense.expense_type.name if !@expense.expense_type.nil?  %> </p>
-      <p><b>Código:  </b><%= @expense.expense_code %></p>
-      <p><b>Factura:</b><%= @expense.invoice %></p>
+      <p><b>Código:  </b><%= @expense.location %></p>
+      <p><b>Factura:</b><%= @expense.expense_invoice %></p>
       <p><b>Subtotal:</b><%= @expense.subtotal %></p>
       <p><b>Iva:</b> <%= @expense.iva %></p>
       <p><b>Total:</b> <%= @expense.total %></p>

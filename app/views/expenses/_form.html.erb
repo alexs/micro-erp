@@ -39,15 +39,15 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :expense_code, :class => 'control-label' %>
+    <%= f.label :location, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :expense_code, :class => 'text_field' %>
+      <%= f.text_field :location, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :invoice, :class => 'control-label' %>
+    <%= f.label :expense_invoice, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :invoice, :class => 'text_field' %>
+      <%= f.text_field :expense_invoice, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
@@ -83,7 +83,7 @@
   <div class="control-group">
     <%= f.label :usd_aop, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :usd_aop, :class => 'input-small' %>
+      <span id="usd"></span>
     </div>
   </div>
 
@@ -161,9 +161,10 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
+    
     $('.date').datepicker({
      "autoclose": true
-   });
+    });
 
     $("#expense_expense_category_id").change(function() {
     val_expense_cat = $("#expense_expense_category_id").val();
@@ -178,6 +179,14 @@
     $("#more_photos").click(function(){
       $(this).closest("div").next(".class2").toggle();
     });
+
+    $('#expense_total').bind('input propertychange', function() {
+    var total  = this.value;
+    
+    if ($.isNumeric( total ))
+      $("#usd").text((total*13) + " USD");
+    });
+
 
   })
 </script>

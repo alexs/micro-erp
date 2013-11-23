@@ -4,9 +4,9 @@ class CreateExpenses < ActiveRecord::Migration
       t.references :job
       t.references :expense_category
       t.references :expense_type
-      t.string :expense_code
+      t.string :location
       t.date :date
-      t.string :invoice
+      t.string :expense_invoice
       t.decimal :subtotal
       t.decimal :iva
       t.decimal :other_taxes
@@ -14,6 +14,7 @@ class CreateExpenses < ActiveRecord::Migration
       t.decimal :total
       t.decimal :usd_aop
       t.string :refund_voucher
+      t.date :refund_date
       t.string :file1
       t.string :file2
       t.string :file3
