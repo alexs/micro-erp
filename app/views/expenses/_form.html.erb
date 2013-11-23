@@ -184,7 +184,7 @@
     var total  = this.value;
     
     if ($.isNumeric( total ))
-      $("#usd").text((total*13) + " USD");
+      $("#usd").text((total*13).toFixed(2) + " USD");
     });
 
 
