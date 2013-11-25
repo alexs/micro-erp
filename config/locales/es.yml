@@ -214,6 +214,7 @@ es:
         user: Usuario
         expense: Gasto
         job: Proyecto/Servicio
+        setting: Configuración
     attributes:
         user:
           name: "Nombre"
@@ -233,7 +234,7 @@ es:
           other_taxes: Otros impuestos
           tip: Propina
           refund_voucher: Comprobante rembolso
-          expense_invoice: "Factura"
+          expense_invoice: "Factura o Num. de Comprobante"
           usd_aop: "USD AOP"
           file1: "Comprobante"
           file2: "Comprobante (opción2)"

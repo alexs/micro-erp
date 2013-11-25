@@ -13,6 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require jquery.validate
+//= require jquery.validate.additional-methods
+//= require jquery.validate.localization/messages_es
 //= require highcharts
 //= require highcharts/highcharts-more
 //= require highcharts/modules/data

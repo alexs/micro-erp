@@ -1,0 +1,16 @@
+<legend>Valor del dolar</legend>
+
+<div class="well">
+
+<p>
+  <b>Tipo de cambio dolar:</b>
+  <%= number_to_currency(@setting.usd) %>
+</p>
+
+<p>
+  <b>Último tipo de cambio registrado por:</b>
+  <%= @setting.user.fullname %>
+</p>
+</div>
+
+<%= link_to 'Nuevo tipo de cambio', new_setting_path, :class => "btn btn-primary" %>

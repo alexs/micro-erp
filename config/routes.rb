@@ -1,4 +1,7 @@
 Erp::Application.routes.draw do
+  resources :settings
+
+
   resources :expense_types
 
 

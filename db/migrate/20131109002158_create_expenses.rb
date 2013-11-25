@@ -7,12 +7,12 @@ class CreateExpenses < ActiveRecord::Migration
       t.string :location
       t.date :date
       t.string :expense_invoice
-      t.decimal :subtotal
-      t.decimal :iva
-      t.decimal :other_taxes
-      t.decimal :tip
-      t.decimal :total
-      t.decimal :usd_aop
+      t.decimal :subtotal, :precision => 10, :scale => 2
+      t.decimal :iva, :precision => 10, :scale => 2
+      t.decimal :other_taxes, :precision => 10, :scale => 2
+      t.decimal :tip, :precision => 10, :scale => 2
+      t.decimal :total, :precision => 10, :scale => 2
+      t.decimal :usd_aop, :precision => 10, :scale => 2
       t.string :refund_voucher
       t.date :refund_date
       t.string :file1

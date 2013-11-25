@@ -49,7 +49,7 @@ class ExpensesController < ApplicationController
 
     respond_to do |format|
       if @expense.save
-        format.html { redirect_to @expense, notice: 'Expense was successfully created.' }
+        format.html { redirect_to @expense, notice: 'El gasto ha sido registrado.' }
         format.json { render json: @expense, status: :created, location: @expense }
       else
         format.html { render action: "new" }
@@ -66,7 +66,7 @@ class ExpensesController < ApplicationController
 
     respond_to do |format|
       if @expense.update_attributes(params[:expense])
-        format.html { redirect_to @expense, notice: 'Expense was successfully updated.' }
+        format.html { redirect_to @expense, notice: 'El gasto ha sido actualizado.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

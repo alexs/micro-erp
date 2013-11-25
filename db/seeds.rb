@@ -16,3 +16,5 @@ Job.create!(name: "Proyecto prueba", status_id: 1, sold: true, user_id: 1,  job_
 ExpenseType.create!([{ name: 'Avion' }, { name: 'Taxi' }, { name: 'Comida' }])
 
 ExpenseCategory.create!([{ id: 1, name: 'Gasto de venta' }, { id: 2, name: 'Gasto de proyecto/servicio' }, { id: 3, name: 'Gasto de Operacion' }])
+
+Setting.create!(usd: 13, user_id: 1)

@@ -30,6 +30,7 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   gem "highcharts-rails", "~> 3.0.0"
+  gem 'jquery-validation-rails'
 end
 
 gem 'jquery-rails'
