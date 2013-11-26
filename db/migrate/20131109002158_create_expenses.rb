@@ -4,6 +4,7 @@ class CreateExpenses < ActiveRecord::Migration
       t.references :job
       t.references :expense_category
       t.references :expense_type
+      t.references :refund
       t.string :location
       t.date :date
       t.string :expense_invoice
@@ -13,7 +14,6 @@ class CreateExpenses < ActiveRecord::Migration
       t.decimal :tip, :precision => 10, :scale => 2
       t.decimal :total, :precision => 10, :scale => 2
       t.decimal :usd_aop, :precision => 10, :scale => 2
-      t.string :refund_voucher
       t.date :refund_date
       t.string :file1
       t.string :file2

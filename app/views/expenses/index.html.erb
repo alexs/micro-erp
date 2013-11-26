@@ -1,5 +1,5 @@
   <legend>Gastos</legend>
-  <table class="table table-condensed table-hover table-bordered table-striped">
+  <table id="expenses_table" class="table table-condensed table-hover table-bordered table-striped">
   <thead>
     <tr>
       <th><%= sortable "id","#Ref" %></th>
@@ -10,6 +10,8 @@
       <th><%= sortable "job_id","Trabajo" %></th>
       <th><%= sortable "expense_category_id", "Tipo" %></th>
       <th><%= sortable "expense_type_id", "Concepto" %></th>
+      <th><%= sortable "subtotal", "SubTotal" %></th>
+      <th><%= sortable "iva", "IVA" %></th>
       <th><%= sortable "total", "Total" %></th>
       <th><%= sortable "usd_aop", "USD" %></th>
       
@@ -28,8 +30,10 @@
         <td><%= expense.job.name if !expense.job.nil? %></td>
         <td><%= expense.expense_category.name if !expense.expense_category.nil? %></td>
         <td><%= expense.expense_type.name if !expense.expense_type.nil? %></td>
-        <td><%= number_with_precision(expense.total, :precision => 2) if expense.total %></td>
-        <td><%= number_with_precision(expense.usd_aop, :precision => 2) if expense.usd_aop %></td>
+        <td><%= number_to_currency(expense.subtotal) if expense.total %></td>
+        <td><%= number_to_currency(expense.iva) if expense.iva %></td>
+         <td><%= number_to_currency(expense.total) if expense.total %></td>
+        <td><%= number_to_currency(expense.usd_aop) if expense.usd_aop %></td>
         <td>
         <% if !expense.file1.nil? %>
         <%= link_to 'Descargar Archivo1',   expense.file1_url if  expense.file1_url  %>

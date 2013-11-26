@@ -51,9 +51,23 @@
               <%= link_to(raw("<i class='icon-shopping-cart'></i> Compras"),"#")  %>
             </li>
             <% if can? :index, Expense %>
-              <li>
-                <%= link_to(raw("<i class='icon-briefcase'></i> Gastos"),expenses_path)  %>
-              </li>
+              <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="icon-briefcase"></i>
+                  Gastos
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <li> 
+                    <%= link_to(raw("<i class='icon-briefcase'></i> Gastos"),expenses_path,{:class => 'dropdown-toggle'})  %> 
+                  </li>
+                  <li> 
+                    <%= link_to(raw("<i class='icon-repeat'></i> Rembolsos"),refunds_path,{:class => 'dropdown-toggle'})   %> 
+                  </li>
+                </li>
+              </ul>
+            </li>
             <% end %>
             <li>
               <%= link_to(raw("<i class='icon-wrench'></i> Configuración"),settings_path)  %>

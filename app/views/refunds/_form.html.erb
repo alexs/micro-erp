@@ -1,0 +1,60 @@
+<div class="well"> 
+<%= form_for @refund, :html => {:class => 'form-horizontal' } do |f| %>
+
+  <% if @refund.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@refund.errors.count, "error") %> prohibited this refund from being saved:</h2>
+
+      <ul>
+      <% @refund.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+   <div class="control-group">
+    <%= f.label :deposit_date, :class => 'control-label' %>
+    <div class="controls">
+      <div class="input-append date" data-date="<%= l Date.today %>" data-date-format="dd/mm/yyyy" data-date-language = "es">
+        <%= f.text_field :deposit_date, :class => "input-small", :size => "9", :value => "#{l Date.today}" %>
+        <span class="add-on"><i class="icon-calendar"></i></span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="control-group">
+    <%= f.label :code, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :code, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :job, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select( :job_id, Job.where("status_id != ?",4).collect {|p| [ p.name , p.id ] }, { :include_blank => 'Selecciona un proyecto' } )%>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :amount, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :amount, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit nil, :class => "btn btn-success btn-large" %>
+  </div>
+<% end %>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.date').datepicker({
+     "autoclose": true
+    });
+  })
+</script

@@ -215,6 +215,7 @@ es:
         expense: Gasto
         job: Proyecto/Servicio
         setting: Configuración
+        refund: Rembolso
     attributes:
         user:
           name: "Nombre"
@@ -248,6 +249,12 @@ es:
           sold: Vendido
           job_type_id: Tipo de trabajo
           user_id: Usuario
+        refund:
+          deposit_date: Fecha de depósito
+          code: Número de comprobante
+          job: Proyecto/servicio
+          amount: Cantidad
+
            
           
             

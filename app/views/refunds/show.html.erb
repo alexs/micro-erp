@@ -1,0 +1,20 @@
+<legend>Rembolso <%= @refund.code %></legend>
+<div class="well"> 
+	<div class="dl-horizontal">
+		<p>
+			<b>Fecha de depósito:  </b><%= l @refund.deposit_date, :format => :long %>
+		</p>
+		<p>
+			<b>Número de comprobante:  </b><%= @refund.code  %>
+		</p>
+		<p>
+			<b>Proyecto/servicio:  </b><%= @refund.job.name if !@refund.job.nil? %>
+		</p>
+
+		<p>
+			<b>Cantidad:  </b><%= number_to_currency(@refund.amount) if @refund.amount %>
+		</p>
+	</div>
+</div>
+<%= link_to 'Modificar', edit_refund_path(@refund), :class => "btn btn-success" %>
+

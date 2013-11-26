@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  date_deposit: 2013-11-25
+  code: MyString
+  job: 
+  amount: 9.99
+
+two:
+  date_deposit: 2013-11-25
+  code: MyString
+  job: 
+  amount: 9.99
