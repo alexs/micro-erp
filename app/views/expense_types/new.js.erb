@@ -1,0 +1,8 @@
+if( !$('#expense_expense_category_id').val() ){
+	alert("Para ingresar un nuevo concepto, debes seleccionar primero un tipo de gasto en el formulario de gasto.");
+	$("#expense_expense_category_id").val("");
+	$("#expense_expense_type_id").find('option').remove();
+}
+else{
+	alert("Revisa que los datos que ingresas sean válidos y que esa opción no exista en la lista.");
+}

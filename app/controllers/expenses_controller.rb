@@ -68,9 +68,11 @@ class ExpensesController < ApplicationController
       if @expense.update_attributes(params[:expense])
         format.html { redirect_to @expense, notice: 'El gasto ha sido actualizado.' }
         format.json { head :no_content }
+        format.js
       else
         format.html { render action: "edit" }
         format.json { render json: @expense.errors, status: :unprocessable_entity }
+      #  format.js
       end
     end
   end
@@ -85,6 +87,14 @@ class ExpensesController < ApplicationController
       format.html { redirect_to expenses_url }
       format.json { head :no_content }
     end
+  end
+
+  def update_expenses_types_select
+      @expenses_types = []
+      if params[:expense][:expense_category_id].size > 0
+        @expenses_types = ExpenseType.find_all_by_expense_category_id(params[:expense][:expense_category_id])
+      end
+      render :partial => "expenses_types.js.erb"
   end
 
   def load_by_pagination

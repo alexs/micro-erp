@@ -1,0 +1,7 @@
+$("#expense_expense_type_id").find('option').remove();
+$("#expense_expense_type_id").append("<option value=''>Elige una opción</option><%= j options_from_collection_for_select(@expenses_types,'id','name') %>");
+$("#expense_expense_category_id").val();
+if( !$('#expense_expense_category_id').val() )
+	$("#expense_type_expense_category_id").val("");
+else
+	$("#expense_type_expense_category_id").val($('#expense_expense_category_id').val());

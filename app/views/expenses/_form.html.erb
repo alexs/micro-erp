@@ -21,7 +21,7 @@
   <div class="control-group">
     <%= f.label :expense_category_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select( :expense_category_id, ExpenseCategory .all.collect {|p| [ p.name , p.id ] }, { :include_blank => 'Selecciona un tipo de gasto' } )%>
+      <%= f.select( :expense_category_id, ExpenseCategory .all.collect {|p| [ p.name , p.id ] }, { :include_blank => 'Selecciona un tipo de gasto' }, :data => { :remote => true, :url => expense_type_select_path} )%>
     </div>
   </div>
 
@@ -149,6 +149,13 @@
             <%= exp_typ.text_field :name %>
             </div>
         </div>
+
+      <div class="control-group">
+        <%= exp_typ.label :expense_category_id, :class => 'control-label' %>
+        <div class="controls">
+          <%= exp_typ.hidden_field(:expense_category_id)%>
+        </div>
+      </div>
 
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>

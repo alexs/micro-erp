@@ -243,6 +243,7 @@ es:
           desc: Notas
         expense_type:
           name: Nombre del concepto
+          expense_category_id: Tipo de gasto
         job:
           name: Nombre del proyecto o servicio
           status_id: Estado

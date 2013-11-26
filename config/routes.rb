@@ -20,6 +20,8 @@ Erp::Application.routes.draw do
   scope "/admin" do
     resources :users
   end
+  
+  match 'expenses/update_expenses_types_select/', to: 'expenses#update_expenses_types_select', as: 'expense_type_select'
 
   resources :expenses
   resources :jobs

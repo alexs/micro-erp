@@ -46,7 +46,7 @@ class RefundsController < ApplicationController
 
     respond_to do |format|
       if @refund.save
-        format.html { redirect_to @refund, notice: 'Refund was successfully created.' }
+        format.html { redirect_to @refund, notice: 'El rembolso ha sido almacenado' }
         format.json { render json: @refund, status: :created, location: @refund }
       else
         format.html { render action: "new" }

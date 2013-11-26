@@ -2,3 +2,4 @@ $('#addExpenseType').modal('hide');
 $("#expense_expense_type_id").append("<option value=<%= j @expense_type.id.to_s %>><%= j @expense_type.name %></option>");
 $("#expense_expense_type_id" ).css('opacity', 0).animate({ backgroundColor: 'Yellow', opacity: 1.0 }, 1000).animate({ backgroundColor: '#ffffff', opacity: 1.0}, 350);
 $("#expense_expense_type_id").val("<%= j @expense_type.id.to_s %>");
+$("#expense_type_name").val("");

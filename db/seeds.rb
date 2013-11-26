@@ -13,7 +13,7 @@ JobType.create!([{ name: 'Proyecto' }, { name: 'Servicio' }])
 
 Job.create!(name: "Proyecto prueba", status_id: 1, sold: true, user_id: 1,  job_type_id: 1)
 
-ExpenseType.create!([{ name: 'Avion' }, { name: 'Taxi' }, { name: 'Comida' }])
+ExpenseType.create!([{ name: 'Avion', expense_category_id: 1 }, { name: 'Taxi', expense_category_id: 2 }, { name: 'Comida', expense_category_id: 3 }])
 
 ExpenseCategory.create!([{ id: 1, name: 'Gasto de venta' }, { id: 2, name: 'Gasto de proyecto/servicio' }, { id: 3, name: 'Gasto de Operacion' }])
 

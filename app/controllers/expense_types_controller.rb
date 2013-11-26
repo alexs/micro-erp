@@ -29,6 +29,7 @@ class ExpenseTypesController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @expense_type }
+      format.js
     end
   end
 
@@ -51,7 +52,7 @@ class ExpenseTypesController < ApplicationController
       else
         format.html { render action: "new" }
         format.json { render json: @expense_type.errors, status: :unprocessable_entity }
-        format.js
+        format.js { render action: "new" }
       end
     end
   end
