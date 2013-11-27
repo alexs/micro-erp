@@ -23,9 +23,9 @@
 <p>
 Elige un proyecto: <%= select_tag( "job_id",options_from_collection_for_select(Job.where("status_id != ?",4), "id","name"), :include_blank => true) %>
 </p>
-<div class="well">
+
 <legend>Gastos</legend>
-<table id="expenses_table" class="table table-condensed table-hover table-bordered table-striped">
+<table id="expenses_table" class="table table-condensed table-hover table-bordered">
   <thead>
     <tr>
       <th>X</th>
@@ -41,12 +41,16 @@ Elige un proyecto: <%= select_tag( "job_id",options_from_collection_for_select(J
     </tr>
   </thead>
   <% Expense.all.each do |expense| %>
-  <tr>
+  <tr id="record_<%= expense.id %>" class="<%= (expense.refund_id == @refund.id ? 'success' : '') %>">
   	<td>
-  		<%= check_box_tag(:refund_id, @refund.id, false, :data => { :remote => true, :url => url_for(:controller => "expenses", 
-                                      	:action => "update",
-                                      	:id => expense.id, 
-                                      	"expense[refund_id]"=>@refund.id), :method => :put}) %>
+      <%= form_for expense, :remote => true, :url => url_for(:controller => "expenses", 
+                                        :action => "update",
+                                        :id => expense.id, 
+                                        ), :method => :put do |f| %>
+      <%= f.hidden_field :refund_id, :id => "expense_#{expense.id}" %>
+      
+  		<%= check_box_tag(:refund_id, expense.id, (expense.refund_id == @refund.id ? true : false), :class => "checkable") %>
+      <% end %>
       </td>
       <td><%= expense.id %></td>
       <td><%= expense.date %></td>
@@ -64,4 +68,25 @@ Elige un proyecto: <%= select_tag( "job_id",options_from_collection_for_select(J
   </table>
 
 
-</div>
+
+
+
+<script>
+$('.checkable').on('change', 
+function() {
+    expense_id = $(this).val();
+
+    if ( $(this).is(':checked') ){
+     refund_id = <%= @refund.id %>;
+     $("#record_"+expense_id).addClass("success");
+    }
+    else{
+      refund_id = "";
+      $("#record_"+expense_id).removeClass("success");
+    }
+  
+
+    $("#expense_"+expense_id).val(refund_id)
+    $(this).parents('form:first').submit();
+});
+</script>
