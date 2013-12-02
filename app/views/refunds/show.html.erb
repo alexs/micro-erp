@@ -23,7 +23,7 @@
 <p>
 Elige un proyecto: <%= select_tag( "job_id",options_from_collection_for_select(Job.where("status_id != ?",4), "id","name"), :include_blank => true) %>
 </p>
-<div class="well">
+
 <legend>Gastos</legend>
 <table id="expenses_table" class="table table-condensed table-hover table-bordered table-striped">
   <thead>
@@ -59,9 +59,4 @@ Elige un proyecto: <%= select_tag( "job_id",options_from_collection_for_select(J
       <td><%= number_to_currency expense.total %></td>
   </tr>
   <% end %>
-
-
   </table>
-
-
-</div>
