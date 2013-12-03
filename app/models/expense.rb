@@ -11,6 +11,7 @@ class Expense < ActiveRecord::Base
 	belongs_to :expense_category
 	belongs_to :expense_type
 	belongs_to :user
+	belongs_to :refund
 	
 	mount_uploader :file1, FileUploader
 	mount_uploader :file2, FileUploader

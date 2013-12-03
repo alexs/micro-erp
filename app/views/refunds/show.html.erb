@@ -30,6 +30,7 @@ Elige un proyecto: <%= select_tag( "job_id",options_from_collection_for_select(J
     <tr>
       <th>X</th>
       <th>#Ref</th>
+      <th>Num.Rembolso</th>
       <th>Fecha</th>
       <th>Usuario</th>
       <th>Trabajo</th>
@@ -49,10 +50,13 @@ Elige un proyecto: <%= select_tag( "job_id",options_from_collection_for_select(J
                                         ), :method => :put do |f| %>
       <%= f.hidden_field :refund_id, :id => "expense_#{expense.id}" %>
       
-  		<%= check_box_tag(:refund_id, expense.id, (expense.refund_id == @refund.id ? true : false), :class => "checkable") %>
+  		<%= check_box_tag(:refund_id, expense.id, (expense.refund_id == @refund.id ? true : false), :class => "checkable", data: { confirm: "Are you sure?" }) %>
       <% end %>
       </td>
       <td><%= expense.id %></td>
+      <td>
+        <%= link_to(expense.refund.code,refund_path(expense.refund)) if !expense.refund.nil? %>
+      </td>
       <td><%= expense.date %></td>
       <td><%= expense.user.fullname %></td>
       <td><%= expense.job.name if expense.job %></td>
@@ -84,7 +88,6 @@ function() {
       $("#record_"+expense_id).removeClass("success");
     }
   
-
     $("#expense_"+expense_id).val(refund_id)
     $(this).parents('form:first').submit();
 });
