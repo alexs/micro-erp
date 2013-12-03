@@ -6,9 +6,10 @@ class ExpensesController < ApplicationController
   # GET /expenses.json
   def index
    # @expenses = Expense.order(sort_column + ' ' + sort_direction).paginate(:per_page => 20, :page => params[:page])
+   @expense_by_json = Expense.where(:job_id => params[:job_id])
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @expenses }
+      format.json { render json: @expense_by_json  }
     end
   end
 
@@ -102,7 +103,7 @@ class ExpensesController < ApplicationController
       search = "#{params[:search]}"
       @expenses = Expense.accessible_by(current_ability).where("id = ? ", search).order(params[:sort]).paginate(:per_page => 10, :page => params[:page]).order(params[:sort])
     else
-      @expenses = Expense.accessible_by(current_ability).order(params[:sort]).paginate(:per_page => 10, :page => params[:page])      
+      @expenses = Expense.accessible_by(current_ability).order(params[:sort]).paginate(:per_page => 1, :page => params[:page])      
     end
   end
 

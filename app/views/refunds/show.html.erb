@@ -21,8 +21,9 @@
 </p>
 <hr />
 <p>
-Elige un proyecto: <%= select_tag( "job_id",options_from_collection_for_select(Job.where("status_id != ?",4), "id","name"), :include_blank => true) %>
+Elige un proyecto: <%= select_tag( "job_id",options_from_collection_for_select(Job.where("status_id != ?",4), "id","name"), {:include_blank => true, :data => { :remote => true, :url => expenses_path}}) %>
 </p>
+
 
 <legend>Gastos</legend>
 <table id="expenses_table" class="table table-condensed table-hover table-bordered">
@@ -41,6 +42,7 @@ Elige un proyecto: <%= select_tag( "job_id",options_from_collection_for_select(J
       <th>Total</th>
     </tr>
   </thead>
+  <tbody>
   <% Expense.all.each do |expense| %>
   <tr id="record_<%= expense.id %>" class="<%= (expense.refund_id == @refund.id ? 'success' : '') %>">
   	<td>
@@ -93,3 +95,4 @@ function() {
 });
 </script>
 
+</tbody>
