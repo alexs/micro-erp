@@ -22,6 +22,8 @@ Erp::Application.routes.draw do
   end
   
   match 'expenses/update_expenses_types_select/', to: 'expenses#update_expenses_types_select', as: 'expense_type_select'
+  match 'expenses/find_expenses/', to: 'expenses#find_expenses', as: 'find_expenses'
+
 
   resources :expenses
   resources :jobs

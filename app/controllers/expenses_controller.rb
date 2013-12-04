@@ -90,6 +90,15 @@ class ExpensesController < ApplicationController
     end
   end
 
+  def find_expenses
+      @job_id = params[:job_id]
+      @refund_id = params[:refund_id]
+      @expenses = []
+      @expenses = Expense.where(:job_id => @job_id)
+
+      render :partial => "expenses_searched.js.erb"
+  end
+
   def update_expenses_types_select
       @expenses_types = []
       if params[:expense][:expense_category_id].size > 0
