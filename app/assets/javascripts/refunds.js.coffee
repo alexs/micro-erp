@@ -8,7 +8,7 @@ toggleSpinner = -> $("#spinner").toggle()
 
 # When the page is ready:
 $(->
-	$("form[data-remote]")
+	$("#refund_filter_form")
 	.bind('ajax:before', toggleSpinner)
 	.bind('ajax:complete', toggleSpinner)
 	.bind('ajax:success', (event, data, status, xhr) ->

@@ -1,6 +1,6 @@
 <p>
 <legend>Filtro de gastos</legend>
-<%= form_tag url_for(:controller => :expenses, :action => :find_expenses), :remote => true do  %>
+<%= form_tag url_for(:controller => :expenses, :action => :find_expenses), :remote => true, :id => "refund_filter_form" do  %>
 	<%= hidden_field_tag :refund_id, @refund.id %>
 	<table>
 		<thead>

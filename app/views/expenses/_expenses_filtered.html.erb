@@ -1,4 +1,4 @@
-<legend>Gastos </legend>
+<legend>Gastos</legend>
 <table id="expenses_table" class="table table-condensed table-hover table-bordered">
   <thead>
     <tr>
@@ -17,18 +17,19 @@
   </thead>
   <tbody>
   <% @expenses.each do |expense| %>
-  <tr id="record_<%= expense.id %>" class="<%= (expense.refund_id == @refund_id ? 'success' : '') %>">
+  <tr id="record_<%= expense.id %>" class="<%= (expense.refund_id.to_i == @refund_id.to_i ? 'success' : '') %>">
   	<td>
       <%= form_for expense, :remote => true, :url => url_for(:controller => "expenses", 
                                         :action => "update",
                                         :id => expense.id, 
                                         ), :method => :put do |f| %>
       <%= f.hidden_field :refund_id, :id => "expense_#{expense.id}" %>
-      
-  		<%= check_box_tag(:refund_check_id, expense.id, (expense.refund_id == @refund_id ? true : false), :class => "checkable") %>
+     
+  		<%= check_box_tag(:refund_check_id, expense.id, (expense.refund_id.to_i == @refund_id.to_i ? true : false), :class => "checkable") %>
       
       <%= f.text_field :invoice_paid, :id => "expense_invoice_paid_#{expense.id}", :class => "input-small" %><br />
-      <%= f.submit "Asignar", :class => "btn btn-success btn-small" %></td>
+      <%= button_tag "Asignar", :class => "btn btn-success btn-small", :type => "submit", :disable_with => "Asignando..." %> <%= image_tag "spinner.gif", :id => "spinner", :style => "display:none" %><span id="response"></i></span>
+      </td>
       <td><%= expense.id %></td>
       <% end %>
       <td>
