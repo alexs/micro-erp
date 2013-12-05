@@ -1,0 +1,47 @@
+<p>
+<legend>Filtro de gastos</legend>
+<%= form_tag url_for(:controller => :expenses, :action => :find_expenses), :remote => true, :id => "expenses_filter_form" do  %>
+	<table>
+		<thead>
+			<th>Proyecto</th>
+			<th>Usuario</th>
+			<th>Tipo de gasto</th>
+		</thead>
+		<tbody>
+			<td><%= select_tag( "job_id",options_from_collection_for_select(Job.where("status_id != ?",4), "id","name"), {:include_blank => true}) %></td>
+			<td><%= select_tag( "user_id",options_from_collection_for_select(User.all, "id","fullname"), {:include_blank => true}) %></td>
+			<td><%= select_tag( "expense_category_id",options_from_collection_for_select(ExpenseCategory.all, "id","name"), {:include_blank => true}) %></td>
+		</tbody>
+	</table>
+   <table>
+		<thead>
+			<th>Desde</th>
+			<th>Hasta</th>
+		</thead>
+		<tbody>
+			<td>
+				<div class="input-append date" data-date-format="dd/mm/yyyy" data-date-language = "es">
+	        		<%= text_field_tag :expenses_date_from, :date_from, :class => "input-small", :size => "9", :value => nil %>
+	        		<span class="add-on"><i class="icon-calendar"></i></span>
+      			</div>
+      		</td>
+			<td>
+				<div class="input-append date" data-date-format="dd/mm/yyyy" data-date-language = "es">
+	        		<%= text_field_tag :expenses_date_to, :date_to, :class => "input-small", :size => "9", :value => nil %>
+	        		<span class="add-on"><i class="icon-calendar"></i></span>
+      			</div>
+      		</td>
+		</tbody>
+	</table>
+    <p>
+      <%= submit_tag "Buscar gastos", :class => "btn btn-info", :type => "submit", :disable_with => "Buscando..." %> <%= image_tag "spinner.gif", :id => "spinner", :style => "display:none" %><span id="response"></i></span>
+      <%= submit_tag "Generar excel", :class => "btn btn-success", :type => "submit", :disable_with => "Buscando..." %> <%= image_tag "spinner.gif", :id => "spinner", :style => "display:none" %><span id="response"></i></span>
+    </p>
+   <% end %>
+
+
+</p>
+
+<p>
+<div id="expenses_table_container"></div>
+</p>

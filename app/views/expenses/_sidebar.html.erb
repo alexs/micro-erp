@@ -17,7 +17,13 @@
 <% end %>
 
 <% if can? :create, Expense %>
-  <li class = "<%=  action_name == 'index' ? 'active':'' %>">
-    <%= link_to(raw("<i class='icon-filter'></i><span class='hidden-tablet'> Filtrar gastos </span>"), expenses_path) %>
+  <li>
+    <%= link_to(raw("<i class='icon-filter'></i><span class='hidden-tablet'> Filtrar gastos </span>"), find_expenses_form_path, :remote => true) %>
+  </li>
+<% end %>
+
+<% if can? :create, Expense %>
+  <li>
+    <%= link_to(raw("<i class='icon-file'></i><span class='hidden-tablet'> Reporte Gastos Excel </span>"), find_expenses_excel_form_path, :remote => true) %>
   </li>
 <% end %>

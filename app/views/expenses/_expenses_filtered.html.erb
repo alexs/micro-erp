@@ -1,8 +1,12 @@
 <legend>Gastos</legend>
+<% if @refund_id.blank? %>
+<% end %>
 <table id="expenses_table" class="table table-condensed table-hover table-bordered">
   <thead>
     <tr>
-      <th>No.Factura</th>
+      <% if !@refund_id.blank? %>
+        <th>No.Factura</th>
+      <% end %>
       <th>#Ref</th>
       <th>Num.Rembolso</th>
       <th>Fecha</th>
@@ -13,25 +17,37 @@
       <th>SubTotal</th>
       <th>IVA</th>
       <th>Total</th>
+      <% if @refund_id.blank? %>
+        <th>USD</th>
+      <% end %>
+
     </tr>
   </thead>
   <tbody>
+
+  <% total_sum = []%>
   <% @expenses.each do |expense| %>
-  <tr id="record_<%= expense.id %>" class="<%= (expense.refund_id.to_i == @refund_id.to_i ? 'success' : '') %>">
-  	<td>
-      <%= form_for expense, :remote => true, :url => url_for(:controller => "expenses", 
-                                        :action => "update",
-                                        :id => expense.id, 
-                                        ), :method => :put do |f| %>
-      <%= f.hidden_field :refund_id, :id => "expense_#{expense.id}" %>
-     
-  		<%= check_box_tag(:refund_check_id, expense.id, (expense.refund_id.to_i == @refund_id.to_i ? true : false), :class => "checkable") %>
-      
-      <%= f.text_field :invoice_paid, :id => "expense_invoice_paid_#{expense.id}", :class => "input-small" %><br />
-      <%= button_tag "Asignar", :class => "btn btn-success btn-small", :type => "submit", :disable_with => "Asignando..." %> <%= image_tag "spinner.gif", :id => "spinner", :style => "display:none" %><span id="response"></i></span>
-      </td>
-      <td><%= expense.id %></td>
+  <% if @refund_id.blank? %>
+    <tr id="record_<%= expense.id %>" class="<%= (expense.refund_id.nil? ? 'warning' : 'success') %>">
+  <% else %>
+    <tr id="record_<%= expense.id %>" class="<%= (expense.refund_id.to_i == @refund_id. to_i ? 'success' : '') %>">
+  <% end %>
+    <% if !@refund_id.blank? %>  
+    	<td>
+        <%= form_for expense, :remote => true, :url => url_for(:controller => "expenses", 
+                                          :action => "update",
+                                          :id => expense.id, 
+                                          ), :method => :put do |f| %>
+        <%= f.hidden_field :refund_id, :id => "expense_#{expense.id}" %>
+       
+    		<%= check_box_tag(:refund_check_id, expense.id, (expense.refund_id.to_i == @refund_id.to_i ? true : false), :class => "checkable") %>
+        
+        <%= f.text_field :invoice_paid, :id => "expense_invoice_paid_#{expense.id}", :class => "input-small" %><br />
+        <%= button_tag "Asignar", :class => "btn btn-success btn-small", :type => "submit", :disable_with => "Asignando..." %> <%= image_tag "spinner.gif", :id => "spinner", :style => "display:none" %><span id="response"></i></span>
+        </td>
       <% end %>
+    <% end %>
+      <td><%= expense.id %></td>
       <td>
         <%= link_to(expense.refund.code,refund_path(expense.refund)) if !expense.refund.nil? %>
       </td>
@@ -43,9 +59,17 @@
       <td><%= number_to_currency expense.subtotal %></td>
       <td><%= number_to_currency expense.iva %></td>
       <td><%= number_to_currency expense.total %></td>
+      <% total_sum << expense.total %>
+      <% if @refund_id.blank? %>
+        <td><%= number_to_currency expense.usd_aop %></td>
+      <% end %>
   </tr>
   <% end %>
   </table>
+
+  <span>
+    <h2>Total = <%= number_to_currency total_sum.inject{|sum,x| sum + x } %></h2>
+  </span>
 
 <script>
   $('.checkable').on('change', 

@@ -6,10 +6,11 @@ class ExpensesController < ApplicationController
   # GET /expenses.json
   def index
    # @expenses = Expense.order(sort_column + ' ' + sort_direction).paginate(:per_page => 20, :page => params[:page])
-   @expense_by_json = Expense.where(:job_id => params[:job_id])
+  # @expense_by_json = @expenses = Expense.filter_by_date(params[:expenses_date_from],params[:expenses_date_to]).filter_by_job_id(params[:job_id]).filter_by_user_id(params[:user_id]).filter_by_category_id(params[:expense_category_id])
+
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @expense_by_json  }
+   #   format.json { render json: @expense_by_json  }
     end
   end
 
@@ -97,8 +98,27 @@ class ExpensesController < ApplicationController
   def find_expenses
       @refund_id = params[:refund_id]
       @expenses = Expense.filter_by_date(params[:expenses_date_from],params[:expenses_date_to]).filter_by_job_id(params[:job_id]).filter_by_user_id(params[:user_id]).filter_by_category_id(params[:expense_category_id])
-
+      
       render :partial => "expenses_searched.js.erb"
+  end
+
+  def find_expenses_for_excel
+    @exp = Expense.filter_by_date(params[:expenses_date_from],params[:expenses_date_to]).filter_by_job_id(params[:job_id]).filter_by_user_id(params[:user_id]).filter_by_category_id(params[:expense_category_id])
+      respond_to do |format|
+        format.xls
+      end
+  end
+
+  def find_expenses_form
+      @refund_id = params[:refund_id]
+      @expenses = Expense.filter_by_date(params[:expenses_date_from],params[:expenses_date_to]).filter_by_job_id(params[:job_id]).filter_by_user_id(params[:user_id]).filter_by_category_id(params[:expense_category_id])
+
+      render :partial => "filter_expenses_form.js.erb"
+  end
+
+  def find_expenses_excel_form
+      @expenses = Expense.filter_by_date(params[:expenses_date_from],params[:expenses_date_to]).filter_by_job_id(params[:job_id]).filter_by_user_id(params[:user_id]).filter_by_category_id(params[:expense_category_id])
+      render :partial => "find_expenses_excel_form.js.erb"
   end
 
   def update_expenses_types_select
