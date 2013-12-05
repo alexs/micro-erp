@@ -5,6 +5,7 @@ class CreateExpenses < ActiveRecord::Migration
       t.references :expense_category
       t.references :expense_type
       t.references :refund
+      t.text :invoice_paid
       t.string :location
       t.date :date
       t.string :expense_invoice

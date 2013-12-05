@@ -5,7 +5,7 @@ class Expense < ActiveRecord::Base
 	attr_accessible :expense_category_id, :expense_type_id, :user_id,  
 	:job_id, :date, :expense_invoice, :file1, :file2, :file3, :location,
 	 :iva, :subtotal, :total, :usd_aop, :desc, :refund_id, :other_taxes,
-	  :tip
+	  :tip, :invoice_paid
 
 	belongs_to :job
 	belongs_to :expense_category
@@ -17,8 +17,20 @@ class Expense < ActiveRecord::Base
 	mount_uploader :file2, FileUploader
 	mount_uploader :file3, FileUploader
 
+	scope :filter_by_job_id, lambda { |value| where('job_id > (?)', value) if !value.blank? }
+	scope :filter_by_user_id, lambda { |value| where('user_id = (?)', value) if !value.blank? }
+	scope :filter_by_category_id, lambda { |value| where('expense_category_id = (?)', value) if !value.blank? }
+
+	def self.filter_by_date(from_date,to_date)
+		if from_date.blank? || to_date.blank?
+			self
+		else
+			Expense.where("date between ? and ?",from_date,to_date)
+		end
+	end
 
 	def default_values
 		self.usd_aop = self.total / Setting.last.usd
 	end
 end
+

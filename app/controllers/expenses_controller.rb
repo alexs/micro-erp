@@ -46,6 +46,8 @@ class ExpensesController < ApplicationController
   # POST /expenses.json
   def create
     @expense = Expense.new(params[:expense])
+    @refund = Refund.find_by_code(params[:expense]["refund_id"])
+    @expense.refund_id = @refund.id if !@refund.nil? && !@refund.id.nil?
     @expense.user_id = current_user.id
 
     respond_to do |format|
@@ -63,6 +65,8 @@ class ExpensesController < ApplicationController
   # PUT /expenses/1.json
   def update
     @expense = Expense.find(params[:id])
+    @refund = Refund.find_by_code(params[:expense]["refund_id"])
+    params[:expense]["refund_id"] = @refund.id if !@refund.nil? && !@refund.id.nil?
     @expense.user_id = current_user.id
 
     respond_to do |format|
@@ -91,10 +95,8 @@ class ExpensesController < ApplicationController
   end
 
   def find_expenses
-      @job_id = params[:job_id]
       @refund_id = params[:refund_id]
-      @expenses = []
-      @expenses = Expense.where(:job_id => @job_id)
+      @expenses = Expense.filter_by_date(params[:expenses_date_from],params[:expenses_date_to]).filter_by_job_id(params[:job_id]).filter_by_user_id(params[:user_id]).filter_by_category_id(params[:expense_category_id])
 
       render :partial => "expenses_searched.js.erb"
   end
@@ -112,7 +114,7 @@ class ExpensesController < ApplicationController
       search = "#{params[:search]}"
       @expenses = Expense.accessible_by(current_ability).where("id = ? ", search).order(params[:sort]).paginate(:per_page => 10, :page => params[:page]).order(params[:sort])
     else
-      @expenses = Expense.accessible_by(current_ability).order(params[:sort]).paginate(:per_page => 1, :page => params[:page])      
+      @expenses = Expense.accessible_by(current_ability).order(params[:sort]).paginate(:per_page => 10, :page => params[:page])      
     end
   end
 

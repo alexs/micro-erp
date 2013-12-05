@@ -2,52 +2,84 @@
 <div class="well"> 
 	<div class="dl-horizontal">
 		<p>
-			<b>Fecha de depósito:  </b><%= l @refund.deposit_date, :format => :long %>
+			<b>Fecha de depósito:  </b><u><%= l @refund.deposit_date, :format => :long %></u> <b>Número de comprobante:  </b><u><%= @refund.code  %></u>
 		</p>
 		<p>
-			<b>Número de comprobante:  </b><%= @refund.code  %>
+			
 		</p>
 		<p>
-			<b>Proyecto/servicio:  </b><%= @refund.job.name if !@refund.job.nil? %>
+			<b>Proyecto/servicio:  </b><u><%= @refund.job.name if !@refund.job.nil? %></u> <b>Cantidad:  </b> <u><%= number_to_currency(@refund.amount) if @refund.amount %></u>
 		</p>
 
 		<p>
-			<b>Cantidad:  </b><%= number_to_currency(@refund.amount) if @refund.amount %>
+			
 		</p>
 	</div>
 </div>
 <p>
-<%= link_to 'Modificar', edit_refund_path(@refund), :class => "btn btn-success" %> | <%= link_to_function 'Asignar rembolso a gastos', "alert('entra')", :class => "btn btn-info" %>
+<%= link_to 'Modificar', edit_refund_path(@refund), :class => "btn btn-success" %>
 </p>
 <hr />
-<p>
-Elige un proyecto: <%= select_tag( "job_id",options_from_collection_for_select(Job.where("status_id != ?",4), "id","name"), {:include_blank => true, :data => { :remote => true, :url => find_expenses_path(:refund_id => @refund.id)}}) %>
-</p>
 
-<div id="expenses_table_container">
+
+<ul class="nav nav-tabs" id="ExpensesTab">
+  <li class="active">
+    <a href="#expense_filter_tab" data-toggle="tab">Asignar rembolso a gastos</a>
+  </li>
+  <li><a href="#expenses_refunded" data-toggle="tab">Gastos rembolsados</a></li>
+</ul>
+
+<div class="tab-content">
+	<div id="expense_filter_tab" class="tab-pane fade active in">
+		<%= render partial: "expenses_filter_form" %>
+   		<div id="expenses_table_container"></div>
+   	</div>
+   <div id="expenses_refunded" class="tab-pane fade">
+     <legend>Gastos rembolsados con este depósito.</legend>
+<table id="expenses_table" class="table table-condensed table-hover table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>#Ref</th>
+      <th>Fecha</th>
+      <th>Usuario</th>
+      <th>Trabajo</th>
+      <th>Tipo</th>
+      <th>Concepto</th>
+      <th>SubTotal</th>
+      <th>IVA</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @refund.expenses.each do |expense| %>
+  <tr>      
+      <td><%= expense.id %></td>
+      <td><%= l expense.date %></td>
+      <td><%= expense.user.fullname %></td>
+      <td><%= expense.job.name if expense.job %></td>
+      <td><%= expense.expense_category.name if expense.expense_category %></td>
+      <td><%= expense.expense_type.name if expense.expense_type %></td>
+      <td><%= number_to_currency expense.subtotal %></td>
+      <td><%= number_to_currency expense.iva %></td>
+      <td><%= number_to_currency expense.total %></td>
+  </tr>
+  <% end %>
+  </table>
+   </div>
 </div>
+
 
 
 
 
 
 <script>
-$('.checkable').on('change', 
-function() {
-    expense_id = $(this).val();
-
-    if ( $(this).is(':checked') ){
-     refund_id = <%= @refund.id %>;
-     $("#record_"+expense_id).addClass("success");
-    }
-    else{
-      refund_id = "";
-      $("#record_"+expense_id).removeClass("success");
-    }
-  
-    $("#expense_"+expense_id).val(refund_id)
-    $(this).parents('form:first').submit();
-});
+$(document).ready(function(){
+    
+    $('.date').datepicker({
+     "autoclose": true
+    });
+ })
 </script>
 
 </tbody>

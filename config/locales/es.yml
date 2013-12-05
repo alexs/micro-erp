@@ -226,6 +226,7 @@ es:
           current_password: "Contraseña actual"
           role_id: "Tipo de usuario"
         expense:
+          refund_id: Rembolso
           job_id: Proyecto/servicio
           expense_category_id: "Tipo de gasto"
           location: Ubicación

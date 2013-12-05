@@ -4,6 +4,9 @@
   <div class="well"> 
     <div class="dl-horizontal">
       <p><b>Fecha:  </b><%= l @expense.date, :format => :long %></p>
+      <% if !@expense.refund.nil? %>
+        <p><b>Comprobante de rembolso:  </b><%= @expense.refund.code  %></p>
+      <% end %>
       <p><b>Proyecto/servicio:  </b><%= @expense.job.name if !@expense.job.nil? %></p>
       <p><b>Tipo:  </b><%= @expense.expense_category.name if !@expense.expense_category.nil?  %></p>
       <p><b>Concepto:  </b><%= @expense.expense_type.name if !@expense.expense_type.nil?  %> </p>
