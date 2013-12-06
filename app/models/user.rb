@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :password_confirmation, :on => :create
   validates_uniqueness_of :email
 
+  has_many :expenses
+
   def role
     case self.role_id
       when 1

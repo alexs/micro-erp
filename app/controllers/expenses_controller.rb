@@ -1,3 +1,5 @@
+require 'generate_sheet'
+
 class ExpensesController < ApplicationController
   load_and_authorize_resource
   before_filter :load_by_pagination, :only => :index
@@ -103,11 +105,11 @@ class ExpensesController < ApplicationController
   end
 
   def find_expenses_for_excel
-     = Expense.filter_by_date(params[:expenses_date_from],params[:expenses_date_to]).filter_by_job_id(params[:job_id]).filter_by_user_id(params[:user_id]).filter_by_category_id(params[:expense_category_id])
-      respond_to do |format|
-          GenerateSheet.expenses_report(@exp)
-          title = 'reporte_de_gastos_'+ Date.today.gsub(" ", "_") +'.xls'
-          format.xls { send_file "#{RAILS_ROOT}/public/excel/#{title}", :type => 'application/vnd.ms-excel', :filename => title  }
+      expenses = Expense.filter_by_date(params[:expenses_date_from],params[:expenses_date_to]).filter_by_job_id(params[:job_id]).filter_by_user_id(params[:user_id]).filter_by_category_id(params[:expense_category_id])
+      GenerateSheet.expenses_report(expenses)
+      
+      respond_to do |format|          
+          format.xls { send_file "#{::Rails.root.to_s}/public/excel/reporte_de_gastos.xls", :type => 'application/vnd.ms-excel', :filename => "Reporte de Gastos"  }
       end
   end
 
