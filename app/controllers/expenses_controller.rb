@@ -103,9 +103,11 @@ class ExpensesController < ApplicationController
   end
 
   def find_expenses_for_excel
-    @exp = Expense.filter_by_date(params[:expenses_date_from],params[:expenses_date_to]).filter_by_job_id(params[:job_id]).filter_by_user_id(params[:user_id]).filter_by_category_id(params[:expense_category_id])
+     = Expense.filter_by_date(params[:expenses_date_from],params[:expenses_date_to]).filter_by_job_id(params[:job_id]).filter_by_user_id(params[:user_id]).filter_by_category_id(params[:expense_category_id])
       respond_to do |format|
-        format.xls
+          GenerateSheet.expenses_report(@exp)
+          title = 'reporte_de_gastos_'+ Date.today.gsub(" ", "_") +'.xls'
+          format.xls { send_file "#{RAILS_ROOT}/public/excel/#{title}", :type => 'application/vnd.ms-excel', :filename => title  }
       end
   end
 

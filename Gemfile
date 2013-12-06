@@ -10,7 +10,7 @@ gem 'will_paginate-bootstrap'
 gem 'bootstrap-datepicker-rails'
 gem 'carrierwave'
 gem 'carrierwave-google_drive'
-#gem 'spreadsheet', '0.6.5.9'
+gem 'spreadsheet', '0.6.5.9'
 #gem 'acts_as_xlsx'
 
 #gem 'google-api-client'

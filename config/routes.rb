@@ -23,7 +23,7 @@ Erp::Application.routes.draw do
   
   match 'expenses/update_expenses_types_select/', to: 'expenses#update_expenses_types_select', as: 'expense_type_select'
   match 'expenses/find_expenses/', to: 'expenses#find_expenses', as: 'find_expenses'
-  match 'expenses/find_expenses_for_excel/', to: 'expenses#find_expenses_for_excel', as: 'find_expenses_for_excel'
+  match 'expenses/find_expenses_for_excel', to: 'expenses#find_expenses_for_excel', as: 'find_expenses_for_excel', :defaults => { :format => 'xls' }
   match 'expenses/find_expenses_form/', to: 'expenses#find_expenses_form', as: 'find_expenses_form'
   match 'expenses/find_expenses_excel_form', to: 'expenses#find_expenses_excel_form', as: 'find_expenses_excel_form'
 

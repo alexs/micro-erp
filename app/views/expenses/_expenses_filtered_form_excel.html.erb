@@ -1,6 +1,6 @@
 <p>
 <legend>Filtro de gastos</legend>
-<%= form_tag url_for(:controller => :expenses, :action => :find_expenses_for_excel),:format => "xls",  :id => "expenses_filter_form" do  %>
+<%= form_tag url_for(:controller => :expenses, :action => :find_expenses_for_excel),:format => "xlsx",  :id => "expenses_filter_form" do  %>
 	<table>
 		<thead>
 			<th>Proyecto</th>
@@ -34,7 +34,7 @@
 		</tbody>
 	</table>
     <p>
-      <%= submit_tag "Generar excel", :class => "btn btn-success", :type => "submit", :disable_with => "Generando..." %> <%= image_tag "spinner.gif", :id => "spinner", :style => "display:none" %><span id="response"></i></span>
+      <%= submit_tag "Generar excel", :class => "btn btn-success", :type => "submit" %> <%= image_tag "spinner.gif", :id => "spinner", :style => "display:none" %><span id="response"></i></span>
     </p>
    <% end %>
 

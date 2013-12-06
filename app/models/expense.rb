@@ -2,6 +2,8 @@ class Expense < ActiveRecord::Base
 	before_create :default_values
 	before_update :default_values
 
+	#acts_as_xlsx :columns => [:id, :'date.year', :'date.month']
+
 	attr_accessible :expense_category_id, :expense_type_id, :user_id,  
 	:job_id, :date, :expense_invoice, :file1, :file2, :file3, :location,
 	 :iva, :subtotal, :total, :usd_aop, :desc, :refund_id, :other_taxes,

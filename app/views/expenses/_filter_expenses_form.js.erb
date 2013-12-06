@@ -1,5 +1,5 @@
 $('#yield').empty();
 $('.main-menu li').removeClass("active");
-$('.main-menu li').last().addClass("active");
+$('.main-menu li:nth-last-child(2)').addClass("active");
 $('#yield').append("<%= j render partial: 'expenses_filtered_form'%>");
 $('.date').datepicker({"autoclose": true});
