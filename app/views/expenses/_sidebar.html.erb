@@ -10,12 +10,6 @@
   </li>
 <% end %>
 
-<% if can? :index, Expense %>
-  <li>
-    <%= link_to(raw("<i class='icon-search'></i><span class='hidden-tablet'> Búscar </span>"),expenses_path(:search=> "")) %>
-  </li>
-<% end %>
-
 <% if can? :create, Expense %>
   <li>
     <%= link_to(raw("<i class='icon-filter'></i><span class='hidden-tablet'> Filtrar gastos </span>"), find_expenses_form_path, :remote => true) %>

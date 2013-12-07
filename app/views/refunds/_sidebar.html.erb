@@ -10,12 +10,6 @@
   </li>
 <% end %>
 
-<% if can? :index, Refund %>
-  <li>
-    <%= link_to(raw("<i class='icon-search'></i><span> Búscar </span>"),refunds_path(:search=> "")) %>
-  </li>
-<% end %>
-
 <% if can? :create, Refund %>
   <li class = "<%=  action_name == 'index' ? 'active':'' %>">
     <%= link_to(raw("<i class='icon-filter'></i><span> Filtrar Rembolsos </span>"), refunds_path) %>

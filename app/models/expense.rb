@@ -7,7 +7,7 @@ class Expense < ActiveRecord::Base
 	attr_accessible :expense_category_id, :expense_type_id, :user_id,  
 	:job_id, :date, :expense_invoice, :file1, :file2, :file3, :location,
 	 :iva, :subtotal, :total, :usd_aop, :desc, :refund_id, :other_taxes,
-	  :tip, :invoice_paid
+	  :tip, :invoice_paid, :invoiced
 
 	belongs_to :job
 	belongs_to :expense_category

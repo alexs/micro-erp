@@ -1,13 +1,22 @@
 <div class="well"> 
 <%= form_for @expense, :html => {:multipart => true, :class => 'form-horizontal' } do |f| %>
 
+
   <% if current_user.admin? %>
+  <!--
     <div class="control-group">
       <%= f.label :refund_id, :class => 'control-label' %>
       <div class="controls">
         <%= f.text_field :refund_id, :class => 'input-small', :value => @expense.refund.nil? ? "" : @expense.refund.code %>
       </div>
     </div>
+  -->
+    <div class="control-group">
+    <%= f.label :invoice_paid, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :invoice_paid, :class => 'input-small' %>
+    </div>
+  </div>
   <% end %>
   <div class="control-group">
     <%= f.label :date, :class => 'control-label' %>
@@ -21,7 +30,7 @@
   <div class="control-group">
     <%= f.label :expense_category_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select( :expense_category_id, ExpenseCategory .all.collect {|p| [ p.name , p.id ] }, { :include_blank => 'Selecciona un tipo de gasto' }, :data => { :remote => true, :url => expense_type_select_path} )%>
+      <%= f.select( :expense_category_id, ExpenseCategory.all.collect {|p| [ p.name , p.id ] }, { :include_blank => 'Selecciona un tipo de gasto' }, :data => { :remote => true, :url => expense_type_select_path} )%>
     </div>
   </div>
 
@@ -35,7 +44,7 @@
   <div class="control-group">
     <%= f.label :expense_type_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select( :expense_type_id, ExpenseType .all.collect {|p| [ p.name , p.id ] }, { :include_blank => 'Selecciona un concepto' } )%> <%= link_to (image_tag "add.png"),"#", :data => {"toggle" => "modal", "target" => "#addExpenseType"}  %>
+      <%= f.select( :expense_type_id, [], { :include_blank => 'Selecciona un concepto' } )%> <%= link_to (image_tag "add.png"),"#", :data => {"toggle" => "modal", "target" => "#addExpenseType"}  %>
     </div>
   </div>
   <div class="control-group">
@@ -44,6 +53,15 @@
       <%= f.text_field :location, :class => 'text_field' %>
     </div>
   </div>
+
+  <div class="control-group">
+    <%= f.label :invoiced, :class => 'control-label' %>
+        <div class="controls">
+      Sí<%= f.radio_button :invoiced, true %>
+      No<%= f.radio_button :invoiced, false %>
+    </div>
+  </div>
+
   <div class="control-group">
     <%= f.label :expense_invoice, :class => 'control-label' %>
     <div class="controls">

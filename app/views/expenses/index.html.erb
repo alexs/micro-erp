@@ -36,15 +36,15 @@
         <td><%= number_to_currency(expense.usd_aop) if expense.usd_aop %></td>
         <td>
         <% if !expense.file1.nil? %>
-        <%= link_to 'Descargar Archivo1',   expense.file1_url if  expense.file1_url  %>
+        <%= link_to 'Archivo1',   expense.file1_url if  expense.file1_url  %>
          <% end %>
          <br>
         <% if !expense.file2.nil? %>     
-       <%= link_to 'Descargar Archivo2',   expense.file2_url if  expense.file2_url  %>
+       <%= link_to 'Archivo2',   expense.file2_url if  expense.file2_url  %>
        <% end %>
          <br>
        <% if !expense.file3.nil? %>     
-       <%= link_to 'Descargar Archivo3',   expense.file3_url if  expense.file2_url  %>
+       <%= link_to 'Archivo3',   expense.file3_url if  expense.file2_url  %>
        <% end %>
         </td>
         <td><%= link_to 'Detalles', expense, :class => "btn btn-primary btn-small" %></td>

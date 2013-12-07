@@ -16,14 +16,71 @@
       <p><b>Iva:</b> <%= number_to_currency @expense.iva %></p>
       <p><b>Total: </b> <%= number_to_currency(@expense.total) %></p>
       <p><b>USD AOP: </b> <%= number_to_currency @expense.usd_aop %></p>
-      <p><b>Comprobante: </b> <%= @expense.file1 %></p
+      <% if @expense.file1.size > 0 %>
+        <p><b>Comprobante: </b>
+          <a href="#file1" role="button" class="btn btn-info btn-small" data-toggle="modal">Ver comprobante</a>
+        </p>
+      <% end %>
+
       <% if @expense.file2.size > 0 %>
-        <p><b>Comprobante(archivo 2):</b> <%= @expense.file2 %></p>
+        <p><b>Comprobante(archivo 2):</b> <a href="#file2" role="button" class="btn btn-info btn-small" data-toggle="modal">Ver comprobante</a>
+        </p>
       <% end %>
       <% if @expense.file3.size > 0 %>
-        <p><b>Comprobante(archivo 3): </b> <%= @expense.file3 %></p>
+        <p><b>Comprobante(archivo 3):</b> <a href="#file3" role="button" class="btn btn-info btn-small" data-toggle="modal">Ver comprobante</a>
+        </p>
       <% end %>
-      <p><b>Notas: </b><%= @expense.desc %></p>   
+      <p><b>Notas: </b><%= @expense.desc %></p> 
     </div>
   </div>
 <%= link_to 'Modificar', edit_expense_path(@expense), :class => "btn btn-success" %>
+
+
+<% if @expense.file1.size > 0 %>
+<!-- Modal -->
+<div id="file1" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Comprobante de gasto 1</h3>
+  </div>
+  <div class="modal-body">
+    <p><%= image_tag @expense.file1 %></p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Ok</button>
+  </div>
+</div>
+<% end %>
+
+
+<% if @expense.file2.size > 0 %>
+<!-- Modal comprobate 2 -->
+<div id="file2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Comprobante de gasto 2</h3>
+  </div>
+  <div class="modal-body">
+    <p><%= image_tag @expense.file2 %></p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Ok</button>
+  </div>
+</div>
+<% end %>
+
+<% if @expense.file3.size > 0 %>
+        <!-- Modal comprobate 3 -->
+<div id="file3" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Comprobante de gasto 3</h3>
+  </div>
+  <div class="modal-body">
+    <p><%= image_tag @expense.file3 %></p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Ok</button>
+  </div>
+</div>
+<% end %>

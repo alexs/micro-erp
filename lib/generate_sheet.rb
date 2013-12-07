@@ -8,7 +8,7 @@ class GenerateSheet
     Spreadsheet.client_encoding = 'UTF-8'
     book = Spreadsheet.open ::Rails.root.to_s + '/public/excel/reporte_gastos_template.xls'
     sheet = book.worksheet 0
-    i = 9
+    i = 8
     expenses.each do |expense|
       sheet[i,0] = expense.id
       sheet[i,1] = expense.date.year unless expense.date.nil?

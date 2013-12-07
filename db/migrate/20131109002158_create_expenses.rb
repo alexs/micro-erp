@@ -8,6 +8,7 @@ class CreateExpenses < ActiveRecord::Migration
       t.text :invoice_paid
       t.string :location
       t.date :date
+      t.boolean :invoiced
       t.string :expense_invoice
       t.decimal :subtotal, :precision => 10, :scale => 2
       t.decimal :iva, :precision => 10, :scale => 2

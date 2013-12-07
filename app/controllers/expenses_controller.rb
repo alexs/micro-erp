@@ -134,12 +134,7 @@ class ExpensesController < ApplicationController
   end
 
   def load_by_pagination
-    if !params[:search].nil? && params[:search].size > 0
-      search = "#{params[:search]}"
-      @expenses = Expense.accessible_by(current_ability).where("id = ? ", search).order(params[:sort]).paginate(:per_page => 10, :page => params[:page]).order(params[:sort])
-    else
-      @expenses = Expense.accessible_by(current_ability).order(params[:sort]).paginate(:per_page => 10, :page => params[:page])      
-    end
+      @expenses = Expense.accessible_by(current_ability).order(params[:sort]).paginate(:per_page => 10, :page => params[:page])
   end
 
   private
