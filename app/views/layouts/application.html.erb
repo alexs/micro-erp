@@ -62,9 +62,11 @@
                   <li> 
                     <%= link_to(raw("<i class='icon-briefcase'></i> Gastos"),expenses_path,{:class => 'dropdown-toggle'})  %> 
                   </li>
-                  <li> 
-                    <%= link_to(raw("<i class='icon-repeat'></i> Rembolsos"),refunds_path,{:class => 'dropdown-toggle'})   %> 
-                  </li>
+                  <% if current_user.admin? %>
+                    <li> 
+                      <%= link_to(raw("<i class='icon-repeat'></i> Rembolsos"),refunds_path,{:class => 'dropdown-toggle'})   %> 
+                    </li>
+                  <% end %>
                 </li>
               </ul>
             </li>

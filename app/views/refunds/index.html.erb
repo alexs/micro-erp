@@ -1,6 +1,7 @@
  <legend>Rembolsos</legend>
 
 <table class="table table-condensed table-hover table-bordered table-striped">
+  <thead>
   <tr>
     <th><%= sortable "deposit_date","Fecha de depósito" %></th>
     <th><%= sortable "code","Código comprobante" %></th>
@@ -8,6 +9,7 @@
     <th><%= sortable "amount","Cantidad" %></th>
     <th coslpan="3">Opciones</th>
   </tr>
+  </thead>
 
 <% @refunds.each do |refund| %>
   <tr>
@@ -15,9 +17,9 @@
     <td><%= refund.code %></td>
     <td><%= refund.job.name if !refund.job.nil? %></td>
     <td><%= number_to_currency(refund.amount) if refund.amount  %></td>
-    <td><%= link_to 'Detalles', refund, :class => "btn btn-primary btn-small" %></<td>
-        <td><%= link_to 'Modificar', edit_refund_path(refund), :class => "btn btn-success btn-small" %></td>
-        <td><%= link_to 'Eliminar', refund, :confirm => '¿Estas seguro?', :method => :delete, :class => "btn btn-danger btn-small" %></td>
+    <td><%= link_to 'Detalles', refund, :class => "btn btn-primary btn-small" %></td>
+    <td><%= link_to 'Modificar', edit_refund_path(refund), :class => "btn btn-success btn-small" %></td>
+    <td><%= link_to 'Eliminar', refund, :confirm => '¿Estas seguro?', :method => :delete, :class => "btn btn-danger btn-small" %></td>
   </tr>
 <% end %>
 </table>

@@ -4,7 +4,7 @@ require 'spreadsheet'
 
 class GenerateSheet
 
-  def self.expenses_report(expenses)
+  def self.expenses_report(expenses,is_admin=false)
     Spreadsheet.client_encoding = 'UTF-8'
     book = Spreadsheet.open ::Rails.root.to_s + '/public/excel/reporte_gastos_template.xls'
     sheet = book.worksheet 0
@@ -22,9 +22,12 @@ class GenerateSheet
       sheet[i,9] = expense.iva
       sheet[i,10] = expense.total
       sheet[i,11] = expense.usd_aop
+      sheet[i,12] = expense.invoiced ? "Si":"No"
       sheet[i,13] = expense.invoice_paid
       sheet[i,14] = expense.refund.code unless expense.refund.nil?
-      sheet[i,15] = expense.user.fullname
+      if is_admin
+        sheet[i,15] = expense.user.fullname
+      end
       sheet[i,16] = expense.expense_invoice
       i = i + 1
     end

@@ -99,14 +99,22 @@ class ExpensesController < ApplicationController
 
   def find_expenses
       @refund_id = params[:refund_id]
-      @expenses = Expense.filter_by_date(params[:expenses_date_from],params[:expenses_date_to]).filter_by_job_id(params[:job_id]).filter_by_user_id(params[:user_id]).filter_by_category_id(params[:expense_category_id])
+      if current_user.admin?
+        @expenses = Expense.filter_by_date(params[:expenses_date_from],params[:expenses_date_to]).filter_by_job_id(params[:job_id]).filter_by_user_id(params[:user_id]).filter_by_category_id(params[:expense_category_id])
+      else
+        @expenses = Expense.filter_by_date(params[:expenses_date_from],params[:expenses_date_to]).where(:user_id => current_user).filter_by_job_id(params[:job_id]).filter_by_user_id(params[:user_id]).filter_by_category_id(params[:expense_category_id])
+      end
       
       render :partial => "expenses_searched.js.erb"
   end
 
   def find_expenses_for_excel
+    if current_user.admin?
       expenses = Expense.filter_by_date(params[:expenses_date_from],params[:expenses_date_to]).filter_by_job_id(params[:job_id]).filter_by_user_id(params[:user_id]).filter_by_category_id(params[:expense_category_id])
-      GenerateSheet.expenses_report(expenses)
+    else
+      expenses = Expense.filter_by_date(params[:expenses_date_from],params[:expenses_date_to]).where(:user_id => current_user.id).filter_by_job_id(params[:job_id]).filter_by_user_id(params[:user_id]).filter_by_category_id(params[:expense_category_id])
+    end  
+      GenerateSheet.expenses_report(expenses,current_user.admin?)
       
       respond_to do |format|          
           format.xls { send_file "#{::Rails.root.to_s}/public/excel/reporte_de_gastos.xls", :type => 'application/vnd.ms-excel', :filename => "Reporte de Gastos"  }

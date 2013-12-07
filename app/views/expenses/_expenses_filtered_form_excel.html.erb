@@ -4,12 +4,16 @@
 	<table>
 		<thead>
 			<th>Proyecto</th>
-			<th>Usuario</th>
+			<% if current_user.admin? %>
+				<th>Usuario</th>
+			<% end %>
 			<th>Tipo de gasto</th>
 		</thead>
 		<tbody>
 			<td><%= select_tag( "job_id",options_from_collection_for_select(Job.where("status_id != ?",4), "id","name"), {:include_blank => true}) %></td>
-			<td><%= select_tag( "user_id",options_from_collection_for_select(User.all, "id","fullname"), {:include_blank => true}) %></td>
+			<% if current_user.admin? %>
+				<td><%= select_tag( "user_id",options_from_collection_for_select(User.all, "id","fullname"), {:include_blank => true}) %></td>
+			<% end %>
 			<td><%= select_tag( "expense_category_id",options_from_collection_for_select(ExpenseCategory.all, "id","name"), {:include_blank => true}) %></td>
 		</tbody>
 	</table>

@@ -43,4 +43,4 @@ ExpenseType.create!([{ name: 'Alimentos en viaje', expense_category_id: 1 },
 
 ExpenseCategory.create!([{ id: 1, name: 'Gasto de venta' }, { id: 2, name: 'Gasto de proyecto/servicio' }, { id: 3, name: 'Gasto de Operación' }])
 
-Setting.create!(usd: 13, user_id: 1)
+Setting.create!(usd: 12, user_id: 1)

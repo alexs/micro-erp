@@ -9,6 +9,7 @@ class Ability
         when 2
           #can :manage, :all
           can :manage, Expense, :user_id => user.id
+          can :read, Job
         when 3
           can :manage, :all
         when 4

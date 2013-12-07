@@ -24,10 +24,10 @@ class Expense < ActiveRecord::Base
 	scope :filter_by_category_id, lambda { |value| where('expense_category_id = (?)', value) if !value.blank? }
 
 	def self.filter_by_date(from_date,to_date)
-		if from_date.blank? || to_date.blank?
-			self
+		if !from_date.blank? && !to_date.blank?
+			Expense.where("date between ? and ?",from_date.to_date,to_date.to_date)
 		else
-			Expense.where("date between ? and ?",from_date,to_date)
+			self			
 		end
 	end
 
