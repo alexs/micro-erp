@@ -51,7 +51,7 @@ class ExpensesController < ApplicationController
     @expense = Expense.new(params[:expense])
     @refund = Refund.find_by_code(params[:expense]["refund_id"])
     @expense.refund_id = @refund.id if !@refund.nil? && !@refund.id.nil?
-    @expense.user_id = current_user.id
+    @expense.user_id = current_user.id unless current_user.admin?
 
     respond_to do |format|
       if @expense.save
@@ -70,7 +70,7 @@ class ExpensesController < ApplicationController
     @expense = Expense.find(params[:id])
     @refund = Refund.find_by_code(params[:expense]["refund_id"])
     params[:expense]["refund_id"] = @refund.id if !@refund.nil? && !@refund.id.nil?
-    @expense.user_id = current_user.id
+    @expense.user_id = current_user.id unless current_user.admin?
 
     respond_to do |format|
       if @expense.update_attributes(params[:expense])
@@ -136,7 +136,7 @@ class ExpensesController < ApplicationController
   def update_expenses_types_select
       @expenses_types = []
       if params[:expense][:expense_category_id].size > 0
-        @expenses_types = ExpenseType.find_all_by_expense_category_id(params[:expense][:expense_category_id])
+        @expenses_types = ExpenseType.find_all_by_expense_category_id(params[:expense][:expense_category_id]).sort
       end
       render :partial => "expenses_types.js.erb"
   end

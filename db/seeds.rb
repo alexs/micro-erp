@@ -7,12 +7,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create!(:name => "Administrador", :surname => "admin", :email => "admin@mail.com", :role_id => 1, :password => "admin",
-	:password_confirmation => "admin", :role_id => 1)
+User.create!([{:name => "Liliana", :surname => "Ortega", :email => "lortega@micgs.com", :role_id => 1, :password => "lortega",
+	:password_confirmation => "lortega"},{:name => "Ing. Aldo", :surname => "Cartamin", :email => "acartamin@micgs.com", :role_id => 2, :password => "aldo",
+	:password_confirmation => "aldo",}])
 
 JobType.create!([{ name: 'Proyecto' }, { name: 'Servicio' }])
-
-Job.create!(name: "Proyecto prueba", status_id: 1, sold: true, user_id: 1,  job_type_id: 1)
 
 ExpenseType.create!([{ name: 'Alimentos en viaje', expense_category_id: 1 },
 	{ name: 'Avión', expense_category_id: 1 },

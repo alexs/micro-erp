@@ -226,6 +226,7 @@ es:
           current_password: "Contraseña actual"
           role_id: "Tipo de usuario"
         expense:
+          user_id: Usuario
           refund_id: Rembolso
           invoice_paid: Factura por cobrar
           job_id: Proyecto/servicio

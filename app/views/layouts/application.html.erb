@@ -119,7 +119,9 @@
                     <li class="nav-header hidden-tablet">
                       Menú
                     </li>
-                    <%= render :partial => "#{controller_name.to_s}/sidebar" %>
+                    <% if controller_name.to_s != "registrations" %>
+                      <%= render :partial => "#{controller_name.to_s}/sidebar" %>
+                    <% end %>
                   </ul>
                 </div><!--/.well -->
               </div><!--/span-->
