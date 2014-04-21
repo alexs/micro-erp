@@ -7,9 +7,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create!([{:name => "Liliana", :surname => "Ortega", :email => "lortega@micgs.com", :role_id => 1, :password => "lortega",
-	:password_confirmation => "lortega"},{:name => "Ing. Aldo", :surname => "Cartamin", :email => "acartamin@micgs.com", :role_id => 2, :password => "aldo",
-	:password_confirmation => "aldo",}])
+User.create!([{:name => "Prueba", :surname => "Prueba User", :email => "prueba@mail.com", :role_id => 1, :password => "prueba",
+	:password_confirmation => "prueba"},{:name => "Ingeniero", :surname => "Prueba", :email => "ingprueba@mail.com", :role_id => 2, :password => "prueba",
+	:password_confirmation => "prueba",}])
 
 JobType.create!([{ name: 'Proyecto' }, { name: 'Servicio' }])
 
